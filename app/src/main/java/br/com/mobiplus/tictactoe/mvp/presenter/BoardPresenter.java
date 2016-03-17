@@ -12,6 +12,8 @@ import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventBoardClick;
+import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/16/16.
@@ -27,8 +29,14 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void onBoardClick(EventBoardClick eventBoardClick) {
+    public void viewOnBoardClick(EventBoardClick eventBoardClick) {
         Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
+        mModel.updateBoard(Player.PLAYER_1, eventBoardClick.getClickedPosition());
+    }
+
+    @Subscribe
+    public void modelOnCurrentBoardLoad(EventOnBoardLoad eventOnBoardLoad) {
+        mView.updateBoard(eventOnBoardLoad.getBoard());
     }
 
     @Override
