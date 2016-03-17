@@ -6,6 +6,7 @@ import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
+import br.com.mobiplus.tictactoe.otto.BusProvider;
 
 /**
  * Created by luis.fernandez on 3/16/16.
@@ -24,4 +25,15 @@ public class BoardPresenter implements IBoardPresenter {
         this.mView = view;
         this.mModel = model;
     }
+
+    @Override
+    public void onStart() {
+        BusProvider.getInstance().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        BusProvider.getInstance().unregister(this);
+    }
+
 }
