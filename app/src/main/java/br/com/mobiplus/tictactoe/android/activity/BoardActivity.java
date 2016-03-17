@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import br.com.mobiplus.tictactoe.R;
+import br.com.mobiplus.tictactoe.mvp.presenter.BoardPresenter;
+import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
 
 public class BoardActivity extends AppCompatActivity {
     // Remove the below line after defining your own ad unit ID.
@@ -17,10 +19,14 @@ public class BoardActivity extends AppCompatActivity {
             + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
 
+    private IBoardPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
+        mPresenter = new BoardPresenter(BoardActivity.this);
 
         // Load an ad into the AdMob banner view.
         AdView adView = (AdView) findViewById(R.id.adView);
