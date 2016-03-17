@@ -5,13 +5,24 @@ package br.com.mobiplus.tictactoe.pojo;
  */
 public class Board {
 
-    String[][] board = new String[3][3];
+    private String[][] board = new String[3][3];
+    private Player nextPlayer = Player.PLAYER_1;
+
+    public Player getNextPlayer() {
+        if (nextPlayer.equals(Player.PLAYER_1)) {
+            nextPlayer = Player.PLAYER_2;
+            return Player.PLAYER_1;
+        } else {
+            nextPlayer = Player.PLAYER_1;
+            return Player.PLAYER_2;
+        }
+    }
 
     public String[][] getBoard() {
         return board;
     }
 
-    public void changeBoard(int position, String value) {
+    public void updateBoard(int position, String value) {
         switch (position) {
             case 0 : {
                 board[0][0] = value;

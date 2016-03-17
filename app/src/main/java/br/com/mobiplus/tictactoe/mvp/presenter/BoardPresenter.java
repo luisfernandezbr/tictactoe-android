@@ -31,7 +31,7 @@ public class BoardPresenter implements IBoardPresenter {
     @Subscribe
     public void viewOnBoardClick(EventBoardClick eventBoardClick) {
         Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
-        mModel.updateBoard(Player.PLAYER_1, eventBoardClick.getClickedPosition());
+        mModel.updateBoard(eventBoardClick.getClickedPosition());
     }
 
     @Subscribe
