@@ -1,4 +1,4 @@
-package br.com.mobiplus.tictactoe;
+package br.com.mobiplus.tictactoe.android.activity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import br.com.mobiplus.tictactoe.R;
 
 public class BoardActivity extends AppCompatActivity {
     // Remove the below line after defining your own ad unit ID.
