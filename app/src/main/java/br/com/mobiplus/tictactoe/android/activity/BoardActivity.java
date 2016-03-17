@@ -2,10 +2,7 @@ package br.com.mobiplus.tictactoe.android.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.mvp.presenter.BoardPresenter;
 import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
 
@@ -16,8 +13,6 @@ public class BoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
-
         mPresenter = new BoardPresenter(BoardActivity.this);
     }
 
