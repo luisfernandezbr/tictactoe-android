@@ -11,4 +11,6 @@ public interface IBoardModel {
     void verifyIfIsAFinishedMatch();
 
     Player hasAWinner();
+
+    void restartGame();
 }

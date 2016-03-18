@@ -9,4 +9,6 @@ public interface IBoardRepo {
     Board getCurrentBoard();
 
     void updateBoard(Board board);
+
+    void resetBoard();
 }

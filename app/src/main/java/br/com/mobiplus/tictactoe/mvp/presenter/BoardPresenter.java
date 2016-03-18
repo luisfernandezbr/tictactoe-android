@@ -1,11 +1,9 @@
 package br.com.mobiplus.tictactoe.mvp.presenter;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
-import br.com.mobiplus.tictactoe.android.application.AppApplication;
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.ia.ComputerIaModel;
@@ -14,6 +12,7 @@ import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventBoardClick;
+import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
 import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -37,6 +36,11 @@ public class BoardPresenter implements IBoardPresenter {
     public void viewOnBoardClick(EventBoardClick eventBoardClick) {
         //Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
         mModel.updateBoard(eventBoardClick.getClickedPosition());
+    }
+
+    @Subscribe
+    public void viewOnRestartGame(EventRestartGame eventRestartGame) {
+        mModel.restartGame();
     }
 
     @Subscribe

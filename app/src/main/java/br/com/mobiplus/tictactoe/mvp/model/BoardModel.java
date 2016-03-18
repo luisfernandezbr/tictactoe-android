@@ -75,4 +75,10 @@ public class BoardModel implements IBoardModel {
 
         return null;
     }
+
+    @Override
+    public void restartGame() {
+        mRepo.resetBoard();
+        BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+    }
 }

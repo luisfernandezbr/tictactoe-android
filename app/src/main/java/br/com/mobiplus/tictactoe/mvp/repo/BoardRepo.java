@@ -18,4 +18,9 @@ public class BoardRepo implements IBoardRepo {
     public void updateBoard(Board board) {
         BoardRepo.mBoard = board;
     }
+
+    @Override
+    public void resetBoard() {
+        mBoard = new Board();
+    }
 }
