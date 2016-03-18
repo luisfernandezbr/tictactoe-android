@@ -6,14 +6,18 @@ package br.com.mobiplus.tictactoe.pojo;
 public class Board {
 
     private String[][] board = new String[3][3];
-    private Player nextPlayer = Player.PLAYER_1;
+    private Player currentPlayer = Player.PLAYER_1;
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     public Player getNextPlayer() {
-        if (nextPlayer.equals(Player.PLAYER_1)) {
-            nextPlayer = Player.PLAYER_2;
+        if (currentPlayer.equals(Player.PLAYER_1)) {
+            currentPlayer = Player.PLAYER_2;
             return Player.PLAYER_1;
         } else {
-            nextPlayer = Player.PLAYER_1;
+            currentPlayer = Player.PLAYER_1;
             return Player.PLAYER_2;
         }
     }
