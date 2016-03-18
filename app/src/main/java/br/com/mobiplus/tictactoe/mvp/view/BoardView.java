@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventBoardClick;
 import br.com.mobiplus.tictactoe.pojo.Board;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/16/16.
@@ -37,8 +39,6 @@ public class BoardView extends BaseView implements IBoardView {
                 @Override
                 public void onClick(View v) {
                     int clickedPosition = (int) v.getTag();
-                    Button button = (Button) v;
-                    //button.setText("X");
                     BusProvider.getInstance().post(new EventBoardClick(clickedPosition));
                 }
             });
@@ -62,5 +62,10 @@ public class BoardView extends BaseView implements IBoardView {
                 }
             }
         }
+    }
+
+    @Override
+    public void defineWinner(Player player) {
+        Toast.makeText(mActivity.getApplicationContext(), "The winner is " + player.toString() , Toast.LENGTH_LONG).show();
     }
 }

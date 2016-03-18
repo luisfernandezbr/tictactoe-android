@@ -35,7 +35,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void viewOnBoardClick(EventBoardClick eventBoardClick) {
-        Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
         mModel.updateBoard(eventBoardClick.getClickedPosition());
     }
 
@@ -46,8 +46,24 @@ public class BoardPresenter implements IBoardPresenter {
         Player currentPlayer = board.getCurrentPlayer();
 
         if (currentPlayer.equals(Player.PLAYER_2)) {
-            mComputerIaModel.play();
+
+            Player player = mModel.hasAWinner();
+
+            if (player != null) {
+                mView.defineWinner(player);
+                mView.updateBoard(eventOnBoardLoad.getBoard());
+            } else {
+                mComputerIaModel.play();
+            }
+
         } else {
+
+            Player player = mModel.hasAWinner();
+
+            if (player != null) {
+                mView.defineWinner(player);
+            }
+
             mView.updateBoard(eventOnBoardLoad.getBoard());
         }
     }

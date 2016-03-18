@@ -7,4 +7,8 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public interface IBoardModel {
     void updateBoard(int clickedPosition);
+
+    void verifyIfIsAFinishedMatch();
+
+    Player hasAWinner();
 }

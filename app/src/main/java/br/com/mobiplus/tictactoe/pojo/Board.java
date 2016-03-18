@@ -5,7 +5,7 @@ package br.com.mobiplus.tictactoe.pojo;
  */
 public class Board {
 
-    private String[][] board = new String[3][3];
+    private String [][] board = new String[3][3];
     private Player currentPlayer = Player.PLAYER_1;
 
     public Player getCurrentPlayer() {
