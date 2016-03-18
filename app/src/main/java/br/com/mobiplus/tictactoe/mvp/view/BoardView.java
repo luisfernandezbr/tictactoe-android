@@ -56,6 +56,10 @@ public class BoardView extends BaseView implements IBoardView {
 
                 TextView textView = (TextView) findViewById(mButtonArray[index]);
                 textView.setText(boardState[row][col]);
+
+                if (boardState[row][col] != null) {
+                    textView.setClickable(false);
+                }
             }
         }
     }

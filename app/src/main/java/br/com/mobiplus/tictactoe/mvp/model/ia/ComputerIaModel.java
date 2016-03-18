@@ -41,7 +41,7 @@ public class ComputerIaModel implements IComputerIaModel {
                 }
             }
         }
-        
+
         mRepo.updateBoard(board);
         BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
     }
