@@ -12,13 +12,11 @@ public class Board {
         return currentPlayer;
     }
 
-    public Player getNextPlayer() {
+    private void changeCurrentPlayer() {
         if (currentPlayer.equals(Player.PLAYER_1)) {
             currentPlayer = Player.PLAYER_2;
-            return Player.PLAYER_1;
         } else {
             currentPlayer = Player.PLAYER_1;
-            return Player.PLAYER_2;
         }
     }
 
@@ -27,6 +25,8 @@ public class Board {
     }
 
     public void updateBoard(int position, String value) {
+        changeCurrentPlayer();
+
         switch (position) {
             case 0 : {
                 board[0][0] = value;

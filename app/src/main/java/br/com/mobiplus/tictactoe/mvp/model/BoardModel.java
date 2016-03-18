@@ -25,7 +25,7 @@ public class BoardModel implements IBoardModel {
     @Override
     public void updateBoard(int clickedPosition) {
         Board board = mRepo.getCurrentBoard();
-        Player player = board.getNextPlayer();
+        Player player = board.getCurrentPlayer();
 
         if (player.equals(Player.PLAYER_1)) {
             board.updateBoard(clickedPosition, "X");
