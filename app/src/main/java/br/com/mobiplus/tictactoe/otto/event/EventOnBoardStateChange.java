@@ -5,11 +5,11 @@ import br.com.mobiplus.tictactoe.pojo.Board;
 /**
  * Created by luis.fernandez on 3/16/16.
  */
-public class EventOnBoardLoad {
+public class EventOnBoardStateChange {
 
     private Board board;
 
-    public EventOnBoardLoad(Board board) {
+    public EventOnBoardStateChange(Board board) {
         this.board = board;
     }
 

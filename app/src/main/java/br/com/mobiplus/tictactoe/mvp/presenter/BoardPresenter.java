@@ -13,7 +13,7 @@ import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventBoardClick;
 import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
+import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
@@ -45,18 +45,18 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void modelOnCurrentBoardLoad(EventOnBoardLoad eventOnBoardLoad) {
-        Board board = eventOnBoardLoad.getBoard();
+    public void modelOnBoardStateChange(EventOnBoardStateChange eventOnBoardStateChange) {
+        Board board = eventOnBoardStateChange.getBoard();
 
         Player currentPlayer = board.getCurrentPlayer();
 
-        if (currentPlayer.equals(Player.PLAYER_2)) {
+        if (currentPlayer.equals(Player.PLAYER_COMPUTER)) {
 
             Player player = mModel.hasAWinner();
 
             if (player != null) {
                 mView.defineWinner(player);
-                mView.updateBoard(eventOnBoardLoad.getBoard());
+                mView.updateBoard(eventOnBoardStateChange.getBoard());
             } else {
                 mComputerIaModel.play();
             }
@@ -69,7 +69,7 @@ public class BoardPresenter implements IBoardPresenter {
                 mView.defineWinner(player);
             }
 
-            mView.updateBoard(eventOnBoardLoad.getBoard());
+            mView.updateBoard(eventOnBoardStateChange.getBoard());
         }
     }
 

@@ -6,7 +6,7 @@ package br.com.mobiplus.tictactoe.pojo;
 public class Board {
 
     private String [][] boardState = new String[3][3];
-    private Player currentPlayer = Player.PLAYER_1;
+    private Player currentPlayer = Player.PLAYER_USER;
 
     private BoardLine [] boardLineArray = {
             new BoardLine(new BoardCell(0, 0), new BoardCell(0, 1), new BoardCell(0, 2)),
@@ -32,10 +32,10 @@ public class Board {
     }
 
     private void changeCurrentPlayer() {
-        if (currentPlayer.equals(Player.PLAYER_1)) {
-            currentPlayer = Player.PLAYER_2;
+        if (currentPlayer.equals(Player.PLAYER_USER)) {
+            currentPlayer = Player.PLAYER_COMPUTER;
         } else {
-            currentPlayer = Player.PLAYER_1;
+            currentPlayer = Player.PLAYER_USER;
         }
     }
 

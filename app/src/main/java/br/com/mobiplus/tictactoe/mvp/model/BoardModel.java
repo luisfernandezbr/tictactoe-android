@@ -3,7 +3,7 @@ package br.com.mobiplus.tictactoe.mvp.model;
 import br.com.mobiplus.tictactoe.mvp.repo.BoardRepo;
 import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
+import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardLine;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -20,7 +20,7 @@ public class BoardModel implements IBoardModel {
     }
 
     public void requestCurrentBoard() {
-        BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
     }
 
     @Override
@@ -28,14 +28,14 @@ public class BoardModel implements IBoardModel {
         Board board = mRepo.getCurrentBoard();
         Player player = board.getCurrentPlayer();
 
-        if (player.equals(Player.PLAYER_1)) {
+        if (player.equals(Player.PLAYER_USER)) {
             board.updateBoard(clickedPosition, "X");
         } else {
             board.updateBoard(clickedPosition, "O");
         }
 
         mRepo.updateBoard(board);
-        BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class BoardModel implements IBoardModel {
             String value3 = boardStatePositions[winCombs[i][2]];
 
             if (value1 != null && value1.equals(value2) && value2.equals(value3)) {
-                return value1.equals("X") ? Player.PLAYER_1 : Player.PLAYER_2;
+                return value1.equals("X") ? Player.PLAYER_USER : Player.PLAYER_COMPUTER;
             }
 
         }
@@ -80,7 +80,7 @@ public class BoardModel implements IBoardModel {
     @Override
     public void restartGame() {
         mRepo.resetBoard();
-        BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
     }
 
     @Override

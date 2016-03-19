@@ -1,9 +1,13 @@
 package br.com.mobiplus.tictactoe.ai.model;
 
+import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
+import br.com.mobiplus.tictactoe.ai.chain.BlockOponentChooser;
+import br.com.mobiplus.tictactoe.ai.chain.CreateWinnerConditionChooser;
+import br.com.mobiplus.tictactoe.ai.chain.WinPlayChooser;
 import br.com.mobiplus.tictactoe.mvp.repo.BoardRepo;
 import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
+import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
 
 /**
@@ -43,6 +47,18 @@ public class ComputerIaModel implements IComputerIaModel {
         }
 
         mRepo.updateBoard(board);
-        BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
+    }
+
+    private void testAI() {
+        Board board = mRepo.getCurrentBoard();
+
+        AbstractBestPlayChooser playChooser = new WinPlayChooser();
+        AbstractBestPlayChooser blockClooser = new BlockOponentChooser();
+        AbstractBestPlayChooser createWinner = new CreateWinnerConditionChooser();
+
+        createWinner.setNext(blockClooser);
+        playChooser.setNext(createWinner);
+        playChooser.chooseBestPlay(board);
     }
 }
