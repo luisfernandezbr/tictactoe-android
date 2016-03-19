@@ -1,9 +1,10 @@
 package br.com.mobiplus.tictactoe.mvp.model;
 
+import br.com.mobiplus.tictactoe.GameStateEnum;
 import br.com.mobiplus.tictactoe.mvp.repo.BoardRepo;
 import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
+import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardLine;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -19,14 +20,9 @@ public class BoardModel implements IBoardModel {
         this.mRepo = new BoardRepo();
     }
 
-    public void requestCurrentBoard() {
-        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
-    }
-
     @Override
-    public void updateBoard(int clickedPosition) {
+    public void updateBoard(Player player, int clickedPosition) {
         Board board = mRepo.getCurrentBoard();
-        Player player = board.getCurrentPlayer();
 
         if (player.equals(Player.PLAYER_USER)) {
             board.updateBoard(clickedPosition, "X");
@@ -35,11 +31,28 @@ public class BoardModel implements IBoardModel {
         }
 
         mRepo.updateBoard(board);
-        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
+
+
+        if (player.equals(Player.PLAYER_COMPUTER)) {
+
+            if (hasAWinner() != null) {
+                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_CPU_WINS));
+            } else {
+                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_PLAY));
+            }
+
+        } else {
+
+            if (hasAWinner() != null) {
+                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_WINS));
+            } else {
+                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_CPU_PLAY));
+            }
+        }
     }
 
     @Override
-    public void verifyIfIsAFinishedMatch() {
+    public void verifyGameState() {
 
     }
 
@@ -80,7 +93,7 @@ public class BoardModel implements IBoardModel {
     @Override
     public void restartGame() {
         mRepo.resetBoard();
-        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
+        BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_PLAY));
     }
 
     @Override

@@ -9,5 +9,5 @@ import br.com.mobiplus.tictactoe.pojo.Player;
 public interface IBoardView {
     void updateBoard(Board board);
 
-    void defineWinner(Player player);
+    void updateBoard(Board board, Player winner);
 }

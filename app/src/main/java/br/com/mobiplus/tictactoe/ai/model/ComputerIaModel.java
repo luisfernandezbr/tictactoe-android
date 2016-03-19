@@ -1,13 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.model;
 
-import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
-import br.com.mobiplus.tictactoe.ai.chain.BlockOponentChooser;
-import br.com.mobiplus.tictactoe.ai.chain.CreateWinnerConditionChooser;
-import br.com.mobiplus.tictactoe.ai.chain.WinPlayChooser;
-import br.com.mobiplus.tictactoe.mvp.repo.BoardRepo;
-import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
+import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
 import br.com.mobiplus.tictactoe.pojo.Board;
 
 /**
@@ -15,17 +9,8 @@ import br.com.mobiplus.tictactoe.pojo.Board;
  */
 public class ComputerIaModel implements IComputerIaModel {
 
-    private IBoardRepo mRepo;
-
-    public ComputerIaModel() {
-        this.mRepo = new BoardRepo();
-    }
-
-
     @Override
-    public void play() {
-        Board board = mRepo.getCurrentBoard();
-
+    public void play(final Board board) {
         boolean search = true;
 
         SEARCH_BEST_PLAY : while (search) {
@@ -39,26 +24,11 @@ public class ComputerIaModel implements IComputerIaModel {
                     String boardPosition = boardState[row][col];
 
                     if (boardPosition == null) {
-                        board.updateBoard(index, "O");
+                        BusProvider.getInstance().post(new EventOnCpuPlay(index));
                         break SEARCH_BEST_PLAY;
                     }
                 }
             }
         }
-
-        mRepo.updateBoard(board);
-        BusProvider.getInstance().post(new EventOnBoardStateChange(mRepo.getCurrentBoard()));
-    }
-
-    private void testAI() {
-        Board board = mRepo.getCurrentBoard();
-
-        AbstractBestPlayChooser playChooser = new WinPlayChooser();
-        AbstractBestPlayChooser blockClooser = new BlockOponentChooser();
-        AbstractBestPlayChooser createWinner = new CreateWinnerConditionChooser();
-
-        createWinner.setNext(blockClooser);
-        playChooser.setNext(createWinner);
-        playChooser.chooseBestPlay(board);
     }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.squareup.otto.Subscribe;
 
+import br.com.mobiplus.tictactoe.GameStateEnum;
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.ai.model.ComputerIaModel;
@@ -11,9 +12,10 @@ import br.com.mobiplus.tictactoe.ai.model.IComputerIaModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.EventBoardClick;
+import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
 import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
-import br.com.mobiplus.tictactoe.otto.event.EventOnBoardStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
@@ -33,9 +35,8 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void viewOnBoardClick(EventBoardClick eventBoardClick) {
-        //Toast.makeText(AppApplication.getContext(), "Clicked " + eventBoardClick.getClickedPosition(), Toast.LENGTH_SHORT).show();
-        mModel.updateBoard(eventBoardClick.getClickedPosition());
+    public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
+        mModel.updateBoard(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
         mModel.iterateTest();
     }
 
@@ -45,32 +46,28 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void modelOnBoardStateChange(EventOnBoardStateChange eventOnBoardStateChange) {
-        Board board = eventOnBoardStateChange.getBoard();
+    public void modelOnStateVerified(EventOnGameStateChange eventOnGameStateChange) {
+        Board board = eventOnGameStateChange.getBoard();
+        GameStateEnum currentState = eventOnGameStateChange.getGameState();
 
-        Player currentPlayer = board.getCurrentPlayer();
 
-        if (currentPlayer.equals(Player.PLAYER_COMPUTER)) {
+        if (GameStateEnum.STATE_PLAYER_HUMAN_PLAY.equals(currentState)) {
+            mView.updateBoard(board);
 
-            Player player = mModel.hasAWinner();
+        } else if (GameStateEnum.STATE_PLAYER_CPU_PLAY.equals(currentState)) {
+            mComputerIaModel.play(board);
 
-            if (player != null) {
-                mView.defineWinner(player);
-                mView.updateBoard(eventOnBoardStateChange.getBoard());
-            } else {
-                mComputerIaModel.play();
-            }
+        } else if (GameStateEnum.STATE_PLAYER_HUMAN_WINS.equals(currentState)) {
+            mView.updateBoard(board, Player.PLAYER_USER);
 
-        } else {
-
-            Player player = mModel.hasAWinner();
-
-            if (player != null) {
-                mView.defineWinner(player);
-            }
-
-            mView.updateBoard(eventOnBoardStateChange.getBoard());
+        } else if (GameStateEnum.STATE_PLAYER_CPU_WINS.equals(currentState)) {
+            mView.updateBoard(board, Player.PLAYER_COMPUTER);
         }
+    }
+
+    @Subscribe
+    public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
+        mModel.updateBoard(Player.PLAYER_COMPUTER, eventOnCpuPlay.getPlayedIndex());
     }
 
     @Override

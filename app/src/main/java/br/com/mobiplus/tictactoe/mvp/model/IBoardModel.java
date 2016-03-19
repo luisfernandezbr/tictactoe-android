@@ -6,9 +6,9 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  * Created by luis.fernandez on 3/16/16.
  */
 public interface IBoardModel {
-    void updateBoard(int clickedPosition);
+    void updateBoard(Player player, int clickedPosition);
 
-    void verifyIfIsAFinishedMatch();
+    void verifyGameState();
 
     Player hasAWinner();
 

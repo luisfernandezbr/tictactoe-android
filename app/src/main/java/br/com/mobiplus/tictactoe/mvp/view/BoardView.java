@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.EventBoardClick;
+import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -42,7 +42,7 @@ public class BoardView extends BaseView implements IBoardView {
                 @Override
                 public void onClick(View v) {
                     int clickedPosition = (int) v.getTag();
-                    BusProvider.getInstance().post(new EventBoardClick(clickedPosition));
+                    BusProvider.getInstance().post(new EventOnHumanPlay(clickedPosition));
                 }
             });
             findViewById(mButtonArray[i]).setTag(i);
@@ -78,7 +78,12 @@ public class BoardView extends BaseView implements IBoardView {
     }
 
     @Override
-    public void defineWinner(Player player) {
+    public void updateBoard(Board board, Player winner) {
+        this.updateBoard(board);
+        this.defineWinner(winner);
+    }
+
+    private void defineWinner(Player player) {
         Toast.makeText(mActivity.getApplicationContext(), "The winner is " + player.toString() , Toast.LENGTH_SHORT).show();
     }
 }
