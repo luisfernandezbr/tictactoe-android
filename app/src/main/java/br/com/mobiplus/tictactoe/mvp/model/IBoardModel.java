@@ -6,7 +6,8 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  * Created by luis.fernandez on 3/16/16.
  */
 public interface IBoardModel {
-    void play(Player player, int clickedPosition);
+
+    void testPlay(Player player, int playedIndex);
 
     void verifyGameState();
 
@@ -14,5 +15,4 @@ public interface IBoardModel {
 
     void restartGame();
 
-    void iterateTest();
 }

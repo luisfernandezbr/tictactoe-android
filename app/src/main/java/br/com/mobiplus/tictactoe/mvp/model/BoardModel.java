@@ -6,7 +6,6 @@ import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
 import br.com.mobiplus.tictactoe.pojo.Board;
-import br.com.mobiplus.tictactoe.pojo.BoardLine;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
@@ -16,13 +15,16 @@ public class BoardModel implements IBoardModel {
 
     private IBoardRepo mRepo;
 
+    private Board.IBoardWinnerSearcher mBoardIterator;
+
     public BoardModel() {
         this.mRepo = new BoardRepo();
     }
 
+
     @Override
-    public void play(Player player, int playedIndex) {
-        Board board = mRepo.getCurrentBoard();
+    public void testPlay(final Player player, int playedIndex) {
+        final Board board = mRepo.getCurrentBoard();
 
         if (player.equals(Player.PLAYER_USER)) {
             board.updateBoard(playedIndex, "X");
@@ -32,21 +34,31 @@ public class BoardModel implements IBoardModel {
 
         mRepo.updateBoard(board);
 
-        if (player.equals(Player.PLAYER_COMPUTER)) {
+        board.interateOverLines(new MyBoardWinnerSearcher(board, player));
+    }
 
-            if (hasAWinner() != null) {
-                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_CPU_WINS));
-            } else {
-                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_PLAY));
-            }
+    private class MyBoardWinnerSearcher implements Board.IBoardWinnerSearcher {
 
-        } else {
+        private Board board;
+        private Player player;
 
-            if (hasAWinner() != null) {
-                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_WINS));
-            } else {
-                BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_CPU_PLAY));
-            }
+        public MyBoardWinnerSearcher(final Board board, final Player player) {
+            this.board = board;
+            this.player = player;
+        }
+
+        @Override
+        public void onFinishSearch() {
+            GameStateEnum gameState;
+            gameState = Player.PLAYER_USER.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_PLAY : GameStateEnum.STATE_PLAYER_HUMAN_PLAY;
+            BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
+        }
+
+        @Override
+        public void onWinnerFounded() {
+            GameStateEnum gameState;
+            gameState = Player.PLAYER_COMPUTER.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_WINS : GameStateEnum.STATE_PLAYER_HUMAN_WINS;
+            BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
         }
     }
 
@@ -95,17 +107,23 @@ public class BoardModel implements IBoardModel {
         BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_PLAY));
     }
 
-    @Override
-    public void iterateTest() {
-        Board board = mRepo.getCurrentBoard();
-        board.interateOverLines(new Board.IBoardIterator() {
-            @Override
-            public void onNextLine(BoardLine boardLine) {
-                System.out.println(boardLine.toString());
-                if (boardLine.isAWinnerLine()) {
-
-                }
-            }
-        });
-    }
+//    @Override
+//    public void iterateTest() {
+//        Board board = mRepo.getCurrentBoard();
+//        board.interateOverLines(new Board.IBoardIterator() {
+//            @Override
+//            public void onFinishSearch(BoardLine boardLine) {
+//                System.out.println(boardLine.toString());
+//                if (boardLine.isAWinnerLine()) {
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onWinnerFounded() {
+//
+//            }
+//
+//        });
+//    }
 }

@@ -49,6 +49,30 @@ public class BoardCell {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        BoardCell boardCell = (BoardCell) o;
+
+        if (value == null || boardCell.getValue() == null) {
+            return false;
+        }
+
+        return value.equals(boardCell.value);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("    BoardCell { ");
         sb.append("[row=").append(row);

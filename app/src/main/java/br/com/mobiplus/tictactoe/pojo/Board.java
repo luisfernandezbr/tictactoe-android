@@ -23,8 +23,9 @@ public class Board {
 
     }
 
-    public interface IBoardIterator {
-        void onNextLine(final BoardLine boardLine);
+    public interface IBoardWinnerSearcher {
+        void onWinnerFounded();
+        void onFinishSearch();
     }
 
     public Player getCurrentPlayer() {
@@ -40,13 +41,19 @@ public class Board {
     }
 
     /**
-     * This method iterates over the eight lines of board, calling <code>IBoardIterator.onNextLine<code/>
+     * This method iterates over the eight lines of board, calling <code>IBoardIterator.onFinishSearch<code/>
      * eight times every time when called.
      * The <code>BoardLine</code> param contains three <code>BoardCell</code>s of the line,
      * with your value and your position.
      * @param iterator
      */
-    public void interateOverLines(final IBoardIterator iterator) {
+    public void interateOverLines(final IBoardWinnerSearcher iterator) {
+
+        System.out.println("\n\n ============ \n\n");
+
+        if (iterator == null) {
+            throw new IllegalArgumentException("Param iterator cannot be null!");
+        }
 
         for (int i = 0; i < boardLineArray.length; i++) {
             BoardLine boardLine = boardLineArray[i];
@@ -56,8 +63,15 @@ public class Board {
                 boardCell.setValue(boardState[boardCell.getRow()][boardCell.getCol()]);
             }
 
-            iterator.onNextLine(boardLine);
+            System.out.println(boardLine.toString());
+
+            if (boardLine.isAWinnerLine()) {
+                iterator.onWinnerFounded();
+                return;
+            }
         }
+
+        iterator.onFinishSearch();
     }
 
     public String[][] getBoard() {
