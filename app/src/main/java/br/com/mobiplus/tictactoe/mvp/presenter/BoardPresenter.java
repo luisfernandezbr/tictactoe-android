@@ -6,8 +6,8 @@ import com.squareup.otto.Subscribe;
 
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
-import br.com.mobiplus.tictactoe.mvp.model.ia.ComputerIaModel;
-import br.com.mobiplus.tictactoe.mvp.model.ia.IComputerIaModel;
+import br.com.mobiplus.tictactoe.ai.model.ComputerIaModel;
+import br.com.mobiplus.tictactoe.ai.model.IComputerIaModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;

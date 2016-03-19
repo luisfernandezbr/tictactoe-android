@@ -1,4 +1,4 @@
-package br.com.mobiplus.tictactoe.mvp.model.ia;
+package br.com.mobiplus.tictactoe.ai.model;
 
 import br.com.mobiplus.tictactoe.mvp.repo.BoardRepo;
 import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;

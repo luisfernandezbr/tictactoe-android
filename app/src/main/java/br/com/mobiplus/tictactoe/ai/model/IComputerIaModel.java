@@ -1,4 +1,4 @@
-package br.com.mobiplus.tictactoe.mvp.model.ia;
+package br.com.mobiplus.tictactoe.ai.model;
 
 /**
  * Created by luis.fernandez on 3/17/16.
