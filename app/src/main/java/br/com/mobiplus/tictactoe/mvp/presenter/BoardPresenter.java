@@ -36,7 +36,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
-        mModel.updateBoard(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
+        mModel.play(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
         mModel.iterateTest();
     }
 
@@ -67,7 +67,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
-        mModel.updateBoard(Player.PLAYER_COMPUTER, eventOnCpuPlay.getPlayedIndex());
+        mModel.play(Player.PLAYER_COMPUTER, eventOnCpuPlay.getPlayedIndex());
     }
 
     @Override
