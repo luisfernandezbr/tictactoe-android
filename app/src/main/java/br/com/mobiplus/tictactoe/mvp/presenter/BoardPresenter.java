@@ -5,10 +5,10 @@ import android.app.Activity;
 import com.squareup.otto.Subscribe;
 
 import br.com.mobiplus.tictactoe.GameStateEnum;
-import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
-import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.ai.model.ComputerIaModel;
 import br.com.mobiplus.tictactoe.ai.model.IComputerIaModel;
+import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
+import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
@@ -37,7 +37,7 @@ public class BoardPresenter implements IBoardPresenter {
     @Subscribe
     public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
         mModel.testPlay(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
-        //mModel.iterateTest();
+
     }
 
     @Subscribe
@@ -49,7 +49,6 @@ public class BoardPresenter implements IBoardPresenter {
     public void modelOnStateVerified(EventOnGameStateChange eventOnGameStateChange) {
         Board board = eventOnGameStateChange.getBoard();
         GameStateEnum currentState = eventOnGameStateChange.getGameState();
-
 
         if (GameStateEnum.STATE_PLAYER_HUMAN_PLAY.equals(currentState)) {
             mView.updateBoard(board);

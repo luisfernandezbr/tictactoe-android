@@ -13,7 +13,8 @@ public class ComputerIaModel implements IComputerIaModel {
     public void play(final Board board) {
         boolean search = true;
 
-        SEARCH_BEST_PLAY : while (search) {
+        SEARCH_BEST_PLAY:
+        while (search) {
 
             String[][] boardState = board.getBoard();
 

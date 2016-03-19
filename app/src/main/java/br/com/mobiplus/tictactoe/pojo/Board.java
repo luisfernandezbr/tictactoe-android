@@ -5,10 +5,10 @@ package br.com.mobiplus.tictactoe.pojo;
  */
 public class Board {
 
-    private String [][] boardState = new String[3][3];
+    private String[][] boardState = new String[3][3];
     private Player currentPlayer = Player.PLAYER_USER;
 
-    private BoardLine [] boardLineArray = {
+    private BoardLine[] boardLineArray = {
             new BoardLine(new BoardCell(0, 0), new BoardCell(0, 1), new BoardCell(0, 2)),
             new BoardLine(new BoardCell(1, 0), new BoardCell(1, 1), new BoardCell(1, 2)),
             new BoardLine(new BoardCell(2, 0), new BoardCell(2, 1), new BoardCell(2, 2)),
@@ -22,6 +22,7 @@ public class Board {
 
     public interface IBoardWinnerSearcher {
         void onWinnerFounded();
+
         void onFinishSearch();
     }
 
@@ -38,6 +39,7 @@ public class Board {
      * eight times every time when called.
      * The <code>BoardLine</code> param contains three <code>BoardCell</code>s of the line,
      * with your value and your position.
+     *
      * @param iterator
      */
     public void searchWinner(final IBoardWinnerSearcher iterator) {

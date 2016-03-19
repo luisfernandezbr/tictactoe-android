@@ -16,7 +16,7 @@ public class BoardLine {
         boardCellList.add(boardCell_3);
     }
 
-    public void addBoardCell (BoardCell boardCell) {
+    public void addBoardCell(BoardCell boardCell) {
         boardCellList.add(boardCell);
     }
 
@@ -26,8 +26,8 @@ public class BoardLine {
 
     public boolean isAWinnerLine() {
         return boardCellList.get(0) != null &&
-               boardCellList.get(0).equals(boardCellList.get(1)) &&
-               boardCellList.get(1).equals(boardCellList.get(2));
+                boardCellList.get(0).equals(boardCellList.get(1)) &&
+                boardCellList.get(1).equals(boardCellList.get(2));
 
     }
 

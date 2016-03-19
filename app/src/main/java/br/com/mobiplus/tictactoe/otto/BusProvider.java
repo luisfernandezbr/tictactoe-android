@@ -18,5 +18,6 @@ public class BusProvider {
         return mInstance;
     }
 
-    private BusProvider() {}
+    private BusProvider() {
+    }
 }

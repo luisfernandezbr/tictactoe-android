@@ -84,6 +84,6 @@ public class BoardView extends BaseView implements IBoardView {
     }
 
     private void defineWinner(Player player) {
-        Toast.makeText(mActivity.getApplicationContext(), "The winner is " + player.toString() , Toast.LENGTH_SHORT).show();
+        Toast.makeText(mActivity.getApplicationContext(), "The winner is " + player.toString(), Toast.LENGTH_SHORT).show();
     }
 }
