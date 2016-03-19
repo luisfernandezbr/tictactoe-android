@@ -9,10 +9,5 @@ public interface IBoardModel {
 
     void testPlay(Player player, int playedIndex);
 
-    void verifyGameState();
-
-    Player hasAWinner();
-
     void restartGame();
-
 }

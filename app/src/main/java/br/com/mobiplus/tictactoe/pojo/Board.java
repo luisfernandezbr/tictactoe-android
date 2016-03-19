@@ -19,17 +19,10 @@ public class Board {
             new BoardLine(new BoardCell(0, 2), new BoardCell(1, 1), new BoardCell(2, 0)),
     };
 
-    public Board() {
-
-    }
 
     public interface IBoardWinnerSearcher {
         void onWinnerFounded();
         void onFinishSearch();
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
     }
 
     private void changeCurrentPlayer() {
@@ -47,7 +40,7 @@ public class Board {
      * with your value and your position.
      * @param iterator
      */
-    public void interateOverLines(final IBoardWinnerSearcher iterator) {
+    public void searchWinner(final IBoardWinnerSearcher iterator) {
 
         System.out.println("\n\n ============ \n\n");
 
