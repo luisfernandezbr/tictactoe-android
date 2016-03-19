@@ -13,4 +13,6 @@ public interface IBoardModel {
     Player hasAWinner();
 
     void restartGame();
+
+    void iterateTest();
 }

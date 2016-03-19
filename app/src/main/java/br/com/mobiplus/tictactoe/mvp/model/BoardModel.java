@@ -5,6 +5,7 @@ import br.com.mobiplus.tictactoe.mvp.repo.IBoardRepo;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.event.EventOnBoardLoad;
 import br.com.mobiplus.tictactoe.pojo.Board;
+import br.com.mobiplus.tictactoe.pojo.BoardLine;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
@@ -80,5 +81,19 @@ public class BoardModel implements IBoardModel {
     public void restartGame() {
         mRepo.resetBoard();
         BusProvider.getInstance().post(new EventOnBoardLoad(mRepo.getCurrentBoard()));
+    }
+
+    @Override
+    public void iterateTest() {
+        Board board = mRepo.getCurrentBoard();
+        board.interateOverLines(new Board.IBoardIterator() {
+            @Override
+            public void onNextLine(BoardLine boardLine) {
+                System.out.println(boardLine.toString());
+                if (boardLine.isAWinnerLine()) {
+
+                }
+            }
+        });
     }
 }
