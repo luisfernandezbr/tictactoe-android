@@ -1,5 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.chain;
 
+import android.util.Log;
+
 import java.util.List;
 
 import br.com.mobiplus.tictactoe.pojo.Board;
@@ -13,6 +15,8 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
+        Log.i(TAG, "WinPlayChooser");
+
         BoardLine[] boardLineArray = board.getBoardLineArray();
 
         //noinspection ForLoopReplaceableByForEach

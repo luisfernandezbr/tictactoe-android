@@ -1,5 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.chain;
 
+import android.util.Log;
+
 import br.com.mobiplus.tictactoe.pojo.Board;
 
 /**
@@ -8,6 +10,8 @@ import br.com.mobiplus.tictactoe.pojo.Board;
 public class RandomPlayChooser extends AbstractBestPlayChooser {
     @Override
     public int chooseBestPlay(Board board) {
+        Log.i(TAG, "RandomPlayChooser");
+
         int result = 0;
 
         boolean search = true;

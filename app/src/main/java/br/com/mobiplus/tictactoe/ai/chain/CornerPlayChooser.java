@@ -1,5 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.chain;
 
+import android.util.Log;
+
 import java.util.List;
 
 import br.com.mobiplus.tictactoe.pojo.Board;
@@ -12,12 +14,12 @@ public class CornerPlayChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
+        Log.i(TAG, "CornerPlayChooser");
+
         List<BoardCell> freeCornerCells = board.getFreeCornerCells();
 
         for (int i = 0; i < freeCornerCells.size(); i++) {
             return freeCornerCells.get(i).getIndex();
-
-
         }
 
 //        BoardCell[] cornerCellsArray = board.getCornerCells();

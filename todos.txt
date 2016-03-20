@@ -20,7 +20,7 @@
    |   |
    | O | X
  X |   |
- 
+
 
 - When opponent start on edge, play on center waiting that opponent make a mistake.
     http://www.wikihow.com/Win-at-Tic-Tac-Toe - Method 2 - 3

@@ -7,6 +7,8 @@ import br.com.mobiplus.tictactoe.pojo.Board;
  */
 public abstract class AbstractBestPlayChooser {
 
+    protected static final String TAG = "AbstractBestPlayChooser";
+
     protected AbstractBestPlayChooser mNext;
 
     public abstract int chooseBestPlay(Board board);

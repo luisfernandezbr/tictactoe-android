@@ -1,5 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.chain;
 
+import android.util.Log;
+
 import br.com.mobiplus.tictactoe.pojo.Board;
 
 /**
@@ -9,6 +11,7 @@ public class BlockOpponentWinChooser extends WinPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
+        Log.i(TAG, "BlockOpponentWinChooser");
         return super.chooseBestPlay(board);
     }
 

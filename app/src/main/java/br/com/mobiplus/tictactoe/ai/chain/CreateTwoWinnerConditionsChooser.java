@@ -1,5 +1,7 @@
 package br.com.mobiplus.tictactoe.ai.chain;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
+        Log.i(TAG, "CreateTwoWinnerConditionsChooser");
 
         List<BoardLine> oneOccupiedCellList = new ArrayList<>();
 
