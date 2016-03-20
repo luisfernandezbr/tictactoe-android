@@ -1,7 +1,5 @@
 package br.com.mobiplus.tictactoe.pojo;
 
-import java.util.List;
-
 /**
  * Created by luis.fernandez on 3/16/16.
  */
@@ -69,6 +67,27 @@ public class Board {
         }
 
         iterator.onFinishSearch();
+    }
+
+    public BoardCell getCenterCell() {
+        return new BoardCell(1, 1, boardState[1][1]);
+    }
+
+    public boolean isEmpty() {
+
+        for (int row = 0; row < boardState.length; row++) {
+            for (int col = 0; col < boardState[row].length; col++) {
+                if (boardState[row][col] != null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isNotEmpty() {
+        return !this.isEmpty();
     }
 
     public BoardLine [] getBoardLineArray() {
