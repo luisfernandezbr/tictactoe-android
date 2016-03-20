@@ -24,6 +24,8 @@ public class Board {
         void onWinnerFounded();
 
         void onFinishSearch();
+
+        void onDraw();
     }
 
     private void changeCurrentPlayer() {
@@ -42,7 +44,7 @@ public class Board {
      *
      * @param iterator
      */
-    public void searchWinner(final IBoardWinnerSearcher iterator) {
+    public void searchGameState(final IBoardWinnerSearcher iterator) {
 
         System.out.println("\n\n ============ \n\n");
 
@@ -66,7 +68,11 @@ public class Board {
             }
         }
 
-        iterator.onFinishSearch();
+        if (this.isFull()) {
+            iterator.onDraw();
+        } else {
+            iterator.onFinishSearch();
+        }
     }
 
     public BoardCell getCenterCell() {
@@ -74,7 +80,6 @@ public class Board {
     }
 
     public boolean isEmpty() {
-
         for (int row = 0; row < boardState.length; row++) {
             for (int col = 0; col < boardState[row].length; col++) {
                 if (boardState[row][col] != null) {
@@ -88,6 +93,18 @@ public class Board {
 
     public boolean isNotEmpty() {
         return !this.isEmpty();
+    }
+
+    public boolean isFull() {
+        for (int row = 0; row < boardState.length; row++) {
+            for (int col = 0; col < boardState[row].length; col++) {
+                if (boardState[row][col] == null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public BoardLine[] getBoardLineArray() {

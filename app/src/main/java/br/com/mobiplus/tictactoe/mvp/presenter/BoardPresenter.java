@@ -68,7 +68,7 @@ public class BoardPresenter implements IBoardPresenter {
             mView.updateBoard(board, Player.PLAYER_CPU);
 
         } else if (GameStateEnum.STATE_DRAW.equals(currentState)) {
-            mView.updateBoard(board, Player.PLAYER_CPU);
+            mView.finishOnDraw(board);
         }
     }
 

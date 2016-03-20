@@ -32,7 +32,7 @@ public class BoardModel implements IBoardModel {
 
         mRepo.updateBoard(board);
 
-        board.searchWinner(new MyBoardWinnerSearcher(board, player));
+        board.searchGameState(new MyBoardWinnerSearcher(board, player));
     }
 
     private class MyBoardWinnerSearcher implements Board.IBoardWinnerSearcher {
@@ -50,6 +50,11 @@ public class BoardModel implements IBoardModel {
             GameStateEnum gameState;
             gameState = Player.PLAYER_HUMAN.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_PLAY : GameStateEnum.STATE_PLAYER_HUMAN_PLAY;
             BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
+        }
+
+        @Override
+        public void onDraw() {
+            BusProvider.getInstance().post(new EventOnGameStateChange(board, GameStateEnum.STATE_DRAW));
         }
 
         @Override

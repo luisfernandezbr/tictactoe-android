@@ -19,8 +19,6 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public class BoardView extends BaseView implements IBoardView {
 
-    private Button mButtonRestart, mButtonCpuStart;
-
     private static int[] mButtonArray = {
             R.id.button_1, R.id.button_2, R.id.button_3,
             R.id.button_4, R.id.button_5, R.id.button_6,
@@ -49,16 +47,16 @@ public class BoardView extends BaseView implements IBoardView {
             findViewById(mButtonArray[i]).setTag(i);
         }
 
-        mButtonRestart = (Button) findViewById(R.id.buttonRestart);
-        mButtonRestart.setOnClickListener(new View.OnClickListener() {
+        Button buttonRestart = (Button) findViewById(R.id.buttonRestart);
+        buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BusProvider.getInstance().post(new EventRestartGame());
             }
         });
 
-        mButtonCpuStart = (Button) findViewById(R.id.buttonCpuStart);
-        mButtonCpuStart.setOnClickListener(new View.OnClickListener() {
+        Button buttonCpuStart = (Button) findViewById(R.id.buttonCpuStart);
+        buttonCpuStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BusProvider.getInstance().post(new EventOnCpuStart());
@@ -90,6 +88,16 @@ public class BoardView extends BaseView implements IBoardView {
     public void updateBoard(Board board, Player winner) {
         this.updateBoard(board);
         this.defineWinner(winner);
+    }
+
+    @Override
+    public void finishOnDraw(Board board) {
+        this.updateBoard(board);
+        this.defineDraw();
+    }
+
+    private void defineDraw() {
+        Toast.makeText(mActivity.getApplicationContext(), "Game ended in draw", Toast.LENGTH_SHORT).show();
     }
 
     private void defineWinner(Player player) {

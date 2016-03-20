@@ -10,4 +10,6 @@ public interface IBoardView {
     void updateBoard(Board board);
 
     void updateBoard(Board board, Player winner);
+
+    void finishOnDraw(Board board);
 }
