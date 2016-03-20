@@ -48,7 +48,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
                     for (int z = 0; z < boardCellListIn.size(); z++) {
                         BoardCell boardCellIn = boardCellListIn.get(z);
 
-                        if (boardCellOut.getValue() == null && boardCellIn.getValue() == null) {
+                        if (boardCellOut.isEmpty() && boardCellIn.isEmpty()) {
 
                             if (boardCellOut.getIndex() == boardCellIn.getIndex()) {
                                 return boardCellOut.getIndex();

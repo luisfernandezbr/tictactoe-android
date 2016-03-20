@@ -13,7 +13,7 @@ public class CenterPlayChooser extends AbstractBestPlayChooser {
 
         BoardCell centerCell = board.getCenterCell();
 
-        if (board.isNotEmpty() && centerCell.getValue() == null) {
+        if (board.isNotEmpty() && centerCell.isEmpty()) {
             return centerCell.getIndex();
         }
 

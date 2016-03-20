@@ -48,6 +48,10 @@ public class BoardCell {
         return (row * 3) + col;
     }
 
+    public boolean isEmpty() {
+        return value == null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

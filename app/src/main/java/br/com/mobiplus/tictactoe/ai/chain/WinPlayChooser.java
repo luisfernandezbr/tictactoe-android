@@ -25,7 +25,7 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
                 for (int j = 0; j < boardCellList.size(); j++) {
                     BoardCell boardCell = boardCellList.get(j);
 
-                    if (boardCell.getValue() == null) {
+                    if (boardCell.isEmpty()) {
                         return boardCell.getIndex();
                     }
                 }

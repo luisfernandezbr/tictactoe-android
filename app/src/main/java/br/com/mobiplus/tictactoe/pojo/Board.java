@@ -79,6 +79,26 @@ public class Board {
         return new BoardCell(1, 1, boardState[1][1]);
     }
 
+    public BoardCell [] getCornerCells() {
+        BoardCell [] boardCellsArray = new BoardCell[4];
+        boardCellsArray[0] = new BoardCell(0, 0, boardState[0][0]);
+        boardCellsArray[1] = new BoardCell(0, 2, boardState[0][2]);
+        boardCellsArray[2] = new BoardCell(2, 0, boardState[2][0]);
+        boardCellsArray[3] = new BoardCell(2, 2, boardState[2][2]);
+
+        return boardCellsArray;
+    }
+
+    public BoardCell [] getEdgeCells() {
+        BoardCell [] boardCellsArray = new BoardCell[4];
+        boardCellsArray[0] = new BoardCell(0, 1, boardState[0][1]);
+        boardCellsArray[1] = new BoardCell(1, 0, boardState[1][0]);
+        boardCellsArray[2] = new BoardCell(1, 2, boardState[1][2]);
+        boardCellsArray[3] = new BoardCell(2, 1, boardState[2][1]);
+
+        return boardCellsArray;
+    }
+
     public boolean isEmpty() {
         for (int row = 0; row < boardState.length; row++) {
             for (int col = 0; col < boardState[row].length; col++) {
