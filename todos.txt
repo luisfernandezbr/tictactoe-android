@@ -14,6 +14,33 @@
 
 
 
+- http://www.novelgames.com/en/gametips/tictactoe-win/
+    Case: You start by occupying a corner:
+    Current: The CPU is choosing a wrong option and loose
+ O |   |
+   |   |
+   |   |
+
+ O |   |
+   |   |
+   | X |
+
+ O | O |
+   |   |
+   | X |
+
+ O | O | X
+   |   |
+   | X |
+
+ O | O | X
+ O |   |
+   | X |
+
+ O | O | X
+ O |   |
+ X | X |
+
 
 Finished list
 
