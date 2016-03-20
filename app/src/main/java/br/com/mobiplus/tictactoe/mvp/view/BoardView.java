@@ -1,7 +1,10 @@
 package br.com.mobiplus.tictactoe.mvp.view;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.support.annotation.StringRes;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,8 @@ public class BoardView extends BaseView implements IBoardView {
             R.id.button_7, R.id.button_8, R.id.button_9
     };
 
+    private Button buttonCpuStart;
+
     public BoardView(Activity activity) {
         super(activity);
     }
@@ -47,19 +52,25 @@ public class BoardView extends BaseView implements IBoardView {
             findViewById(mButtonArray[i]).setTag(i);
         }
 
-        Button buttonRestart = (Button) findViewById(R.id.buttonRestart);
-        buttonRestart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BusProvider.getInstance().post(new EventRestartGame());
-            }
-        });
-
-        Button buttonCpuStart = (Button) findViewById(R.id.buttonCpuStart);
+        buttonCpuStart = (Button) findViewById(R.id.buttonCpuStart);
         buttonCpuStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BoardView.this.enableBoardCellsClick(true);
+                BoardView.this.resetResultView();
+                BoardView.this.enableCpuStartButton(false);
                 BusProvider.getInstance().post(new EventOnCpuStart());
+            }
+        });
+
+        final Button buttonRestart = (Button) findViewById(R.id.buttonRestart);
+        buttonRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BoardView.this.enableBoardCellsClick(true);
+                BoardView.this.resetResultView();
+                BoardView.this.enableCpuStartButton(true);
+                BusProvider.getInstance().post(new EventRestartGame());
             }
         });
     }
@@ -86,21 +97,56 @@ public class BoardView extends BaseView implements IBoardView {
 
     @Override
     public void updateBoard(Board board, Player winner) {
+        this.enableBoardCellsClick(false);
         this.updateBoard(board);
         this.defineWinner(winner);
+
     }
 
     @Override
     public void finishOnDraw(Board board) {
+        this.enableBoardCellsClick(false);
         this.updateBoard(board);
         this.defineDraw();
     }
 
     private void defineDraw() {
-        Toast.makeText(mActivity.getApplicationContext(), "Game ended in draw", Toast.LENGTH_SHORT).show();
+        this.enableCpuStartButton(true);
+        this.showResult(R.string.mp_ttt_matchresult_draw);
     }
 
     private void defineWinner(Player player) {
-        Toast.makeText(mActivity.getApplicationContext(), "The winner is " + player.toString(), Toast.LENGTH_SHORT).show();
+        this.enableCpuStartButton(true);
+        this.showResult(player.equals(Player.PLAYER_CPU) ? R.string.mp_ttt_matchresult_winner_cpu : R.string.mp_ttt_matchresult_winner_human);
+    }
+
+    private void enableCpuStartButton(boolean enable) {
+        buttonCpuStart.setClickable(enable);
+        buttonCpuStart.setEnabled(enable);
+    }
+
+    private void resetResultView() {
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.viewGroupMatchResult);
+        viewGroup.setVisibility(View.GONE);
+
+        TextView textResult = (TextView) findViewById(R.id.textMatchResult);
+        textResult.setVisibility(View.GONE);
+        textResult.setText("");
+    }
+
+    private void showResult(@StringRes int stringResId) {
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.viewGroupMatchResult);
+        viewGroup.setVisibility(View.VISIBLE);
+
+        TextView textResult = (TextView) findViewById(R.id.textMatchResult);
+        textResult.setVisibility(View.VISIBLE);
+        textResult.setText(stringResId);
+    }
+
+    private void enableBoardCellsClick(boolean enable) {
+        for (int i = 0; i < mButtonArray.length; i++) {
+            findViewById(mButtonArray[i]).setClickable(enable);
+            findViewById(mButtonArray[i]).setEnabled(enable);
+        }
     }
 }
