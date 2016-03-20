@@ -18,6 +18,23 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
     public int chooseBestPlay(Board board) {
         Log.i(TAG, "CreateTwoWinnerConditionsChooser");
 
+        if (board.getCenterCell().isEmpty()) {
+
+            BoardCell[] cornerCells = board.getCornerCells();
+
+            for (int i = 0; i < cornerCells.length; i++) {
+                BoardCell cornerCell = cornerCells[i];
+
+                if (cornerCell.hasValue("O")) {
+                    List<BoardCell> freeCornerCells = board.getFreeCornerCells();
+
+                    for (int j = 0; j < freeCornerCells.size(); j++) {
+                        return freeCornerCells.get(j).getIndex();
+                    }
+                }
+            }
+        }
+
         List<BoardLine> oneOccupiedCellList = new ArrayList<>();
 
         BoardLine[] boardLineArray = board.getBoardLineArray();
