@@ -90,7 +90,7 @@ public class Board {
         return !this.isEmpty();
     }
 
-    public BoardLine [] getBoardLineArray() {
+    public BoardLine[] getBoardLineArray() {
 
         for (int i = 0; i < boardLineArray.length; i++) {
             BoardLine boardLine = boardLineArray[i];

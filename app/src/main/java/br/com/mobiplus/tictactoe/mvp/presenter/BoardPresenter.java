@@ -43,7 +43,6 @@ public class BoardPresenter implements IBoardPresenter {
     @Subscribe
     public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
         mModel.testPlay(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
-
     }
 
     @Subscribe
@@ -69,11 +68,6 @@ public class BoardPresenter implements IBoardPresenter {
             mView.updateBoard(board, Player.PLAYER_COMPUTER);
         }
     }
-
-//    @Subscribe
-//    public void modelOnCpuStart(EventOnCpuStart eventOnCpuStart) {
-//        mComputerAiModel.play(board);
-//    }
 
     @Subscribe
     public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {

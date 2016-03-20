@@ -40,7 +40,6 @@ public class BlockTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
         }
 
 
-
         return mNext.chooseBestPlay(board);
     }
 }
