@@ -10,4 +10,6 @@ public interface IBoardModel {
     void testPlay(Player player, int playedIndex);
 
     void restartGame();
+
+    void startCpu();
 }

@@ -14,6 +14,7 @@ import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
 import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
 import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
@@ -32,6 +33,11 @@ public class BoardPresenter implements IBoardPresenter {
         this.mView = new BoardView(activity);
         this.mModel = new BoardModel();
         this.mComputerAiModel = new ComputerAiModel();
+    }
+
+    @Subscribe
+    public void viewOnCpuStarts(EventOnCpuStart eventOnCpuStart) {
+        mModel.startCpu();
     }
 
     @Subscribe
@@ -63,6 +69,11 @@ public class BoardPresenter implements IBoardPresenter {
             mView.updateBoard(board, Player.PLAYER_COMPUTER);
         }
     }
+
+//    @Subscribe
+//    public void modelOnCpuStart(EventOnCpuStart eventOnCpuStart) {
+//        mComputerAiModel.play(board);
+//    }
 
     @Subscribe
     public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {

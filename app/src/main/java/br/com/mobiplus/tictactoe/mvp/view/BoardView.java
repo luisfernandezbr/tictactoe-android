@@ -9,6 +9,7 @@ import android.widget.Toast;
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
 import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
 import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -18,7 +19,7 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public class BoardView extends BaseView implements IBoardView {
 
-    private Button mButtonReset;
+    private Button mButtonRestart, mButtonCpuStart;
 
     private static int[] mButtonArray = {
             R.id.button_1, R.id.button_2, R.id.button_3,
@@ -48,11 +49,19 @@ public class BoardView extends BaseView implements IBoardView {
             findViewById(mButtonArray[i]).setTag(i);
         }
 
-        mButtonReset = (Button) findViewById(R.id.reset);
-        mButtonReset.setOnClickListener(new View.OnClickListener() {
+        mButtonRestart = (Button) findViewById(R.id.buttonRestart);
+        mButtonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BusProvider.getInstance().post(new EventRestartGame());
+            }
+        });
+
+        mButtonCpuStart = (Button) findViewById(R.id.buttonCpuStart);
+        mButtonCpuStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BusProvider.getInstance().post(new EventOnCpuStart());
             }
         });
     }

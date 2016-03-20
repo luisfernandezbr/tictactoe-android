@@ -65,4 +65,9 @@ public class BoardModel implements IBoardModel {
         mRepo.resetBoard();
         BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_HUMAN_PLAY));
     }
+
+    @Override
+    public void startCpu() {
+        BusProvider.getInstance().post(new EventOnGameStateChange(mRepo.getCurrentBoard(), GameStateEnum.STATE_PLAYER_CPU_PLAY));
+    }
 }
