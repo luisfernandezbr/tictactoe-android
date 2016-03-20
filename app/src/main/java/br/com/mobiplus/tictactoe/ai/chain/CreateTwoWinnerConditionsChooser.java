@@ -14,7 +14,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
-        List<BoardLine> twoOccupiedCellsList = new ArrayList<>();
+
         List<BoardLine> oneOccupiedCellList = new ArrayList<>();
 
         BoardLine[] boardLineArray = board.getBoardLineArray();
@@ -22,33 +22,37 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
         for (int i = 0; i < boardLineArray.length; i++) {
             BoardLine boardLine = boardLineArray[i];
 
-            if (boardLine.hasTwoOccupiedCells("O")) {
-                twoOccupiedCellsList.add(boardLine);
-                continue;
-            }
-
             if (boardLine.hasOneOccupiedCell("O")) {
                 oneOccupiedCellList.add(boardLine);
+
+                System.out.println(boardLine.toString());
             }
         }
 
         for (int i = 0; i < oneOccupiedCellList.size(); i++) {
-            BoardLine boardLineOne = oneOccupiedCellList.get(i);
+            BoardLine boardLineOut = oneOccupiedCellList.get(i);
 
-            for (int j = 0; j < twoOccupiedCellsList.size(); j++) {
-                BoardLine boardLineTwo = twoOccupiedCellsList.get(j);
+            for (int j = 0; j < oneOccupiedCellList.size(); j++) {
+                if (j == i) {
+                    continue;
+                }
 
-                List<BoardCell> boardCellListOne = boardLineOne.getBoardCellList();
-                List<BoardCell> boardCellListTwo = boardLineTwo.getBoardCellList();
+                BoardLine boardLineIn = oneOccupiedCellList.get(j);
 
-                for (int k = 0; k < boardCellListOne.size(); k++) {
-                    BoardCell boardCellOne = boardCellListOne.get(k);
+                List<BoardCell> boardCellListOut = boardLineOut.getBoardCellList();
+                List<BoardCell> boardCellListIn = boardLineIn.getBoardCellList();
 
-                    for (int z = 0; z < boardCellListTwo.size(); z++) {
-                        BoardCell boardCellTwo = boardCellListTwo.get(z);
+                for (int k = 0; k < boardCellListOut.size(); k++) {
+                    BoardCell boardCellOut = boardCellListOut.get(k);
 
-                        if (boardCellOne.getValue() == null && boardCellTwo.getValue() == null) {
-                            return boardCellOne.getIndex();
+                    for (int z = 0; z < boardCellListIn.size(); z++) {
+                        BoardCell boardCellIn = boardCellListIn.get(z);
+
+                        if (boardCellOut.getValue() == null && boardCellIn.getValue() == null) {
+
+                            if (boardCellOut.getIndex() == boardCellIn.getIndex()) {
+                                return boardCellOut.getIndex();
+                            }
                         }
                     }
                 }

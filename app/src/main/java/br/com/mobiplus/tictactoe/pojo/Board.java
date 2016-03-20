@@ -60,7 +60,7 @@ public class Board {
                 boardCell.setValue(boardState[boardCell.getRow()][boardCell.getCol()]);
             }
 
-            System.out.println(boardLine.toString());
+            //System.out.println(boardLine.toString());
 
             if (boardLine.isAWinnerLine()) {
                 iterator.onWinnerFounded();
