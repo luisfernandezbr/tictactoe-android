@@ -51,7 +51,7 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void modelOnStateVerified(EventOnGameStateChange eventOnGameStateChange) {
+    public void modelOnGameStateChange(EventOnGameStateChange eventOnGameStateChange) {
         Board board = eventOnGameStateChange.getBoard();
         GameStateEnum currentState = eventOnGameStateChange.getGameState();
 
