@@ -5,6 +5,6 @@ import br.com.mobiplus.tictactoe.pojo.Board;
 /**
  * Created by luis.fernandez on 3/17/16.
  */
-public interface IComputerIaModel {
+public interface IComputerAiModel {
     void play(Board board);
 }

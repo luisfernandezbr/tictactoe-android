@@ -1,16 +1,15 @@
-package br.com.mobiplus.tictactoe.ai.model;
+package br.com.mobiplus.tictactoe.ai.chain;
 
-import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
 import br.com.mobiplus.tictactoe.pojo.Board;
 
 /**
- * Created by luis.fernandez on 3/17/16.
+ * Created by luis.fernandez on 3/19/16.
  */
-public class ComputerIaModel implements IComputerIaModel {
-
+public class RandomPlayChooser extends AbstractBestPlayChooser {
     @Override
-    public void play(final Board board) {
+    public int chooseBestPlay(Board board) {
+        int result = 0;
+
         boolean search = true;
 
         SEARCH_BEST_PLAY:
@@ -25,11 +24,12 @@ public class ComputerIaModel implements IComputerIaModel {
                     String boardPosition = boardState[row][col];
 
                     if (boardPosition == null) {
-                        BusProvider.getInstance().post(new EventOnCpuPlay(index));
+                        result = index;
                         break SEARCH_BEST_PLAY;
                     }
                 }
             }
         }
+        return result;
     }
 }

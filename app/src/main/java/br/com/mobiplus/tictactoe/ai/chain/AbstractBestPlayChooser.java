@@ -11,7 +11,11 @@ public abstract class AbstractBestPlayChooser {
 
     public abstract int chooseBestPlay(Board board);
 
-    public void setNext(AbstractBestPlayChooser next) {
+    protected boolean hasNext() {
+        return mNext != null;
+    }
+
+    public void setNextInChain(AbstractBestPlayChooser next) {
         this.mNext = next;
     }
 }

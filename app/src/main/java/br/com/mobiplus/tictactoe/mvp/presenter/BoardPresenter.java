@@ -5,8 +5,8 @@ import android.app.Activity;
 import com.squareup.otto.Subscribe;
 
 import br.com.mobiplus.tictactoe.GameStateEnum;
-import br.com.mobiplus.tictactoe.ai.model.ComputerIaModel;
-import br.com.mobiplus.tictactoe.ai.model.IComputerIaModel;
+import br.com.mobiplus.tictactoe.ai.model.ComputerAiModel;
+import br.com.mobiplus.tictactoe.ai.model.IComputerAiModel;
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
@@ -26,12 +26,12 @@ public class BoardPresenter implements IBoardPresenter {
 
     private IBoardView mView;
     private IBoardModel mModel;
-    private IComputerIaModel mComputerIaModel;
+    private IComputerAiModel mComputerAiModel;
 
     public BoardPresenter(Activity activity) {
         this.mView = new BoardView(activity);
         this.mModel = new BoardModel();
-        this.mComputerIaModel = new ComputerIaModel();
+        this.mComputerAiModel = new ComputerAiModel();
     }
 
     @Subscribe
@@ -54,7 +54,7 @@ public class BoardPresenter implements IBoardPresenter {
             mView.updateBoard(board);
 
         } else if (GameStateEnum.STATE_PLAYER_CPU_PLAY.equals(currentState)) {
-            mComputerIaModel.play(board);
+            mComputerAiModel.play(board);
 
         } else if (GameStateEnum.STATE_PLAYER_HUMAN_WINS.equals(currentState)) {
             mView.updateBoard(board, Player.PLAYER_USER);
