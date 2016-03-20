@@ -24,7 +24,7 @@ public class BoardModel implements IBoardModel {
     public void testPlay(final Player player, int playedIndex) {
         final Board board = mRepo.getCurrentBoard();
 
-        if (player.equals(Player.PLAYER_USER)) {
+        if (player.equals(Player.PLAYER_HUMAN)) {
             board.updateBoard(playedIndex, "X");
         } else {
             board.updateBoard(playedIndex, "O");
@@ -48,14 +48,14 @@ public class BoardModel implements IBoardModel {
         @Override
         public void onFinishSearch() {
             GameStateEnum gameState;
-            gameState = Player.PLAYER_USER.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_PLAY : GameStateEnum.STATE_PLAYER_HUMAN_PLAY;
+            gameState = Player.PLAYER_HUMAN.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_PLAY : GameStateEnum.STATE_PLAYER_HUMAN_PLAY;
             BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
         }
 
         @Override
         public void onWinnerFounded() {
             GameStateEnum gameState;
-            gameState = Player.PLAYER_COMPUTER.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_WINS : GameStateEnum.STATE_PLAYER_HUMAN_WINS;
+            gameState = Player.PLAYER_CPU.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_WINS : GameStateEnum.STATE_PLAYER_HUMAN_WINS;
             BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
         }
     }

@@ -42,7 +42,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
-        mModel.testPlay(Player.PLAYER_USER, eventOnHumanPlay.getPlayedIndex());
+        mModel.testPlay(Player.PLAYER_HUMAN, eventOnHumanPlay.getPlayedIndex());
     }
 
     @Subscribe
@@ -62,16 +62,19 @@ public class BoardPresenter implements IBoardPresenter {
             mComputerAiModel.play(board);
 
         } else if (GameStateEnum.STATE_PLAYER_HUMAN_WINS.equals(currentState)) {
-            mView.updateBoard(board, Player.PLAYER_USER);
+            mView.updateBoard(board, Player.PLAYER_HUMAN);
 
         } else if (GameStateEnum.STATE_PLAYER_CPU_WINS.equals(currentState)) {
-            mView.updateBoard(board, Player.PLAYER_COMPUTER);
+            mView.updateBoard(board, Player.PLAYER_CPU);
+
+        } else if (GameStateEnum.STATE_DRAW.equals(currentState)) {
+            mView.updateBoard(board, Player.PLAYER_CPU);
         }
     }
 
     @Subscribe
     public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
-        mModel.testPlay(Player.PLAYER_COMPUTER, eventOnCpuPlay.getPlayedIndex());
+        mModel.testPlay(Player.PLAYER_CPU, eventOnCpuPlay.getPlayedIndex());
     }
 
     @Override
