@@ -11,6 +11,8 @@ import br.com.mobiplus.tictactoe.pojo.BoardLine;
  */
 public class WinPlayChooser extends AbstractBestPlayChooser {
 
+    private final String mSymbolToSearch = "O";
+
     @Override
     public int chooseBestPlay(Board board) {
         BoardLine[] boardLineArray = board.getBoardLineArray();
@@ -19,7 +21,7 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
         for (int i = 0; i < boardLineArray.length; i++) {
             List<BoardCell> boardCellList = boardLineArray[i].getBoardCellList();
 
-            if (this.hasTwoCellsOccupied(boardCellList, "O")) {
+            if (this.hasTwoCellsOccupied(boardCellList, getSymbolToSearch())) {
 
                 for (int j = 0; j < boardCellList.size(); j++) {
                     BoardCell boardCell = boardCellList.get(j);
@@ -32,5 +34,9 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
         }
 
         return mNext.chooseBestPlay(board);
+    }
+
+    protected String getSymbolToSearch() {
+        return "O";
     }
 }
