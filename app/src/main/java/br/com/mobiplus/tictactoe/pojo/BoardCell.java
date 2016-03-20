@@ -52,6 +52,14 @@ public class BoardCell {
         return value == null;
     }
 
+    public boolean isNotEmpty() {
+        return !this.isEmpty();
+    }
+
+    public boolean hasValue(String value) {
+        return !isEmpty() && this.value.equals(value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -84,5 +92,9 @@ public class BoardCell {
         sb.append("], value=").append(value);
         sb.append("]}");
         return sb.toString();
+    }
+
+    public boolean hasSameValue(BoardCell boardCell) {
+        return boardCell != null && this.isNotEmpty() && this.value.equals(boardCell.getValue());
     }
 }

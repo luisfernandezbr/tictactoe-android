@@ -1,5 +1,9 @@
 package br.com.mobiplus.tictactoe.pojo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by luis.fernandez on 3/16/16.
  */
@@ -89,6 +93,10 @@ public class Board {
         return boardCellsArray;
     }
 
+    public List<BoardCell> getFreeCornerCells() {
+        return null;
+    }
+
     public BoardCell [] getEdgeCells() {
         BoardCell [] boardCellsArray = new BoardCell[4];
         boardCellsArray[0] = new BoardCell(0, 1, boardState[0][1]);
@@ -97,6 +105,20 @@ public class Board {
         boardCellsArray[3] = new BoardCell(2, 1, boardState[2][1]);
 
         return boardCellsArray;
+    }
+
+    public List<BoardCell> getFreeEdgeCells() {
+        List<BoardCell> boardCellList = new ArrayList<>(4);
+
+        for (int i = 0; i < this.getEdgeCells().length; i++) {
+            BoardCell boardCell = this.getEdgeCells()[i];
+
+            if (boardCell.isEmpty()) {
+                boardCellList.add(boardCell);
+            }
+        }
+
+        return boardCellList;
     }
 
     public boolean isEmpty() {
