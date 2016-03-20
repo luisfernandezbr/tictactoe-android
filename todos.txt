@@ -1,0 +1,2 @@
+- Feedback on game is finished in draw
+-
