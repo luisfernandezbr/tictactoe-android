@@ -2,6 +2,7 @@ package br.com.mobiplus.tictactoe.ai.model;
 
 import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.BlockOpponentWinChooser;
+import br.com.mobiplus.tictactoe.ai.chain.CreateTwoWinnerConditionsChooser;
 import br.com.mobiplus.tictactoe.ai.chain.RandomPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.WinPlayChooser;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
@@ -20,12 +21,13 @@ public class ComputerAiModel implements IComputerAiModel {
 
     private int defineNextIndexPlay(Board board) {
         AbstractBestPlayChooser winPlayChooser = new WinPlayChooser();
-        AbstractBestPlayChooser blockOponentWinChooser = new BlockOpponentWinChooser();
+        AbstractBestPlayChooser blockOpponentWinChooser = new BlockOpponentWinChooser();
+        AbstractBestPlayChooser createTwoWinnerConditionsChooser = new CreateTwoWinnerConditionsChooser();
         AbstractBestPlayChooser randomPlayChooser = new RandomPlayChooser();
 
-
-        blockOponentWinChooser.setNextInChain(randomPlayChooser);
-        winPlayChooser.setNextInChain(blockOponentWinChooser);
+        createTwoWinnerConditionsChooser.setNextInChain(randomPlayChooser);
+        blockOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
+        winPlayChooser.setNextInChain(blockOpponentWinChooser);
 
         return winPlayChooser.chooseBestPlay(board);
     }

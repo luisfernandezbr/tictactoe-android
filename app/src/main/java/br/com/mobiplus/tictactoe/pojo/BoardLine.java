@@ -31,6 +31,52 @@ public class BoardLine {
 
     }
 
+    public boolean hasOneOccupiedCell(String symbol) {
+        boolean result = false;
+
+        int occupiedCount = 0;
+        int freeCount = 0;
+
+        for (int i = 0; i < boardCellList.size(); i++) {
+            BoardCell boardCell = boardCellList.get(i);
+
+            if (boardCell.getValue() == null) {
+                freeCount++;
+            } else if (boardCell.getValue().equals(symbol)) {
+                occupiedCount++;
+            }
+        }
+
+        if (occupiedCount == 1 && freeCount == 2) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean hasTwoOccupiedCells(String symbol) {
+        boolean result = false;
+
+        int occupiedCount = 0;
+        int freeCount = 0;
+
+        for (int i = 0; i < boardCellList.size(); i++) {
+            BoardCell boardCell = boardCellList.get(i);
+
+            if (boardCell.getValue() == null) {
+                freeCount++;
+            } else if (boardCell.getValue().equals(symbol)) {
+                occupiedCount++;
+            }
+        }
+
+        if (occupiedCount == 2 && freeCount == 1) {
+            result = true;
+        }
+
+        return result;
+    }
+
     public BoardCell getBoardCell_1() {
         return boardCellList.get(0);
     }
