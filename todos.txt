@@ -1,2 +1,20 @@
-- Feedback on game is finished in draw
+- OK Feedback on game is finished in draw
 -
+
+
+
+- Try start center waiting opponent error
+    http://www.cs.jhu.edu/~jorgev/cs106/ttt.pdf 1.3
+
+
+
+- When opponent start on edge, play on center waiting that opponent make a mistake.
+ O |   |
+   | O | X
+   | X |
+
+   OR
+
+   |   | O
+ X | O |
+   | X |
