@@ -9,7 +9,7 @@ import br.com.mobiplus.tictactoe.pojo.BoardLine;
 /**
  * Created by luis.fernandez on 3/19/16.
  */
-public class WinPlayChooser extends AbstractBestPlayChooser {
+public class BlockOponentWinChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
@@ -19,7 +19,7 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
         for (int i = 0; i < boardLineArray.length; i++) {
             List<BoardCell> boardCellList = boardLineArray[i].getBoardCellList();
 
-            if (this.hasTwoCellsOccupied(boardCellList, "O")) {
+            if (this.hasTwoCellsOccupied(boardCellList, "X")) {
 
                 for (int j = 0; j < boardCellList.size(); j++) {
                     BoardCell boardCell = boardCellList.get(j);
