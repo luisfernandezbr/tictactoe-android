@@ -94,7 +94,17 @@ public class Board {
     }
 
     public List<BoardCell> getFreeCornerCells() {
-        return null;
+        List<BoardCell> boardCellList = new ArrayList<>(4);
+
+        for (int i = 0; i < this.getCornerCells().length; i++) {
+            BoardCell boardCell = this.getCornerCells()[i];
+
+            if (boardCell.isEmpty()) {
+                boardCellList.add(boardCell);
+            }
+        }
+
+        return boardCellList;
     }
 
     public BoardCell [] getEdgeCells() {

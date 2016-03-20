@@ -40,9 +40,9 @@ public class BoardLine {
         for (int i = 0; i < boardCellList.size(); i++) {
             BoardCell boardCell = boardCellList.get(i);
 
-            if (boardCell.getValue() == null) {
+            if (boardCell.isEmpty()) {
                 freeCount++;
-            } else if (boardCell.getValue().equals(symbol)) {
+            } else if (boardCell.hasValue(symbol)) {
                 occupiedCount++;
             }
         }
@@ -63,9 +63,9 @@ public class BoardLine {
         for (int i = 0; i < boardCellList.size(); i++) {
             BoardCell boardCell = boardCellList.get(i);
 
-            if (boardCell.getValue() == null) {
+            if (boardCell.isEmpty()) {
                 freeCount++;
-            } else if (boardCell.getValue().equals(symbol)) {
+            } else if (boardCell.hasValue(symbol)) {
                 occupiedCount++;
             }
         }
