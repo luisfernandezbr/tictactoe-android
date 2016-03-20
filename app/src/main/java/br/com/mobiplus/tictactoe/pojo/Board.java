@@ -107,6 +107,20 @@ public class Board {
         return boardCellList;
     }
 
+    public List<BoardCell> getOccupiedCornerCells() {
+        List<BoardCell> boardCellList = new ArrayList<>(4);
+
+        for (int i = 0; i < this.getCornerCells().length; i++) {
+            BoardCell boardCell = this.getCornerCells()[i];
+
+            if (boardCell.isNotEmpty()) {
+                boardCellList.add(boardCell);
+            }
+        }
+
+        return boardCellList;
+    }
+
     public BoardCell [] getEdgeCells() {
         BoardCell [] boardCellsArray = new BoardCell[4];
         boardCellsArray[0] = new BoardCell(0, 1, boardState[0][1]);
@@ -144,6 +158,21 @@ public class Board {
         }
 
         return list;
+    }
+
+    public BoardCell getEdgeBetween(BoardCell boardCellOne, BoardCell boardCellTwo) {
+        int row = 1;
+        int col = 1;
+
+        if (boardCellTwo.getRow() == boardCellOne.getRow()) {
+            row = boardCellTwo.getRow();
+        }
+
+        if (boardCellTwo.getCol() == boardCellOne.getCol()) {
+            col = boardCellTwo.getCol();
+        }
+
+        return new BoardCell(row, col, boardState[row][col]);
     }
 
     public boolean isEmpty() {

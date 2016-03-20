@@ -33,12 +33,20 @@ public class ComputerAiModel implements IComputerAiModel {
         AbstractBestPlayChooser cornerPlayChooser = new CornerPlayChooser();
         AbstractBestPlayChooser randomPlayChooser = new RandomPlayChooser();
 
+//        cornerPlayChooser.setNextInChain(randomPlayChooser);
+//        centerPlayChooser.setNextInChain(cornerPlayChooser);
+//        blockOppositeCornerWinnerConditionChooser.setNextInChain(centerPlayChooser);
+//        blockTwoWinnerConditionsChooser.setNextInChain(blockOppositeCornerWinnerConditionChooser);
+//        createTwoWinnerConditionsChooser.setNextInChain(blockTwoWinnerConditionsChooser);
+//        blockOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
+//        winPlayChooser.setNextInChain(blockOpponentWinChooser);
+
         cornerPlayChooser.setNextInChain(randomPlayChooser);
         centerPlayChooser.setNextInChain(cornerPlayChooser);
-        blockOppositeCornerWinnerConditionChooser.setNextInChain(centerPlayChooser);
-        blockTwoWinnerConditionsChooser.setNextInChain(blockOppositeCornerWinnerConditionChooser);
-        createTwoWinnerConditionsChooser.setNextInChain(blockTwoWinnerConditionsChooser);
-        blockOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
+        createTwoWinnerConditionsChooser.setNextInChain(centerPlayChooser);
+        blockTwoWinnerConditionsChooser.setNextInChain(createTwoWinnerConditionsChooser);
+        blockOppositeCornerWinnerConditionChooser.setNextInChain(blockTwoWinnerConditionsChooser);
+        blockOpponentWinChooser.setNextInChain(blockOppositeCornerWinnerConditionChooser);
         winPlayChooser.setNextInChain(blockOpponentWinChooser);
 
         return winPlayChooser.chooseBestPlay(board);
