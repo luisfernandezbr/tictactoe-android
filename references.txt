@@ -1,0 +1,8 @@
+https://en.wikipedia.org/wiki/Tic-tac-toe
+http://blog.ostermiller.org/tic-tac-toe-strategy
+http://www.cs.jhu.edu/~jorgev/cs106/ttt.pdf
+http://www.novelgames.com/en/gametips/tictactoe-win/
+http://www.wikihow.com/Win-at-Tic-Tac-Toe
+
+
+http://www.mathrec.org/old/2002jan/solutions.html
