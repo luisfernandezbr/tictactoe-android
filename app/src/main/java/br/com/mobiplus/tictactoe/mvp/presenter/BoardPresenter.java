@@ -42,7 +42,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void viewOnHumanPlay(EventOnHumanPlay eventOnHumanPlay) {
-        mModel.testPlay(Player.PLAYER_HUMAN, eventOnHumanPlay.getPlayedIndex());
+        mModel.play(Player.PLAYER_HUMAN, eventOnHumanPlay.getPlayedIndex());
     }
 
     @Subscribe
@@ -74,7 +74,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     @Subscribe
     public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
-        mModel.testPlay(Player.PLAYER_CPU, eventOnCpuPlay.getPlayedIndex());
+        mModel.play(Player.PLAYER_CPU, eventOnCpuPlay.getPlayedIndex());
     }
 
     @Override

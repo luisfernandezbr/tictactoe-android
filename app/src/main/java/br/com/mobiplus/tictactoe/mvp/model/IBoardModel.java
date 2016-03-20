@@ -7,7 +7,7 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public interface IBoardModel {
 
-    void testPlay(Player player, int playedIndex);
+    void play(Player player, int playedIndex);
 
     void restartGame();
 

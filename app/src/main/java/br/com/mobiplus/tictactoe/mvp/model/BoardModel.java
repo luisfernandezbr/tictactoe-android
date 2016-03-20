@@ -21,7 +21,7 @@ public class BoardModel implements IBoardModel {
 
 
     @Override
-    public void testPlay(final Player player, int playedIndex) {
+    public void play(final Player player, int playedIndex) {
         final Board board = mRepo.getCurrentBoard();
 
         if (player.equals(Player.PLAYER_HUMAN)) {
