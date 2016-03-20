@@ -131,6 +131,21 @@ public class Board {
         return boardCellList;
     }
 
+    public List<BoardLine> getOneOccupiedLineList(String symbol) {
+        List<BoardLine> list = new ArrayList<>(2);
+
+        BoardLine[] boardLineArray = getBoardLineArray();
+        for (int i = 0; i < boardLineArray.length; i++) {
+            BoardLine boardLine = boardLineArray[i];
+
+            if (boardLine.hasOneOccupiedCell(symbol)) {
+                list.add(boardLine);
+            }
+        }
+
+        return list;
+    }
+
     public boolean isEmpty() {
         for (int row = 0; row < boardState.length; row++) {
             for (int col = 0; col < boardState[row].length; col++) {

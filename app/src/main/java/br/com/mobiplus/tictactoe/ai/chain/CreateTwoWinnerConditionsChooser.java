@@ -28,7 +28,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
             if (boardLine.hasOneOccupiedCell("O")) {
                 oneOccupiedCellList.add(boardLine);
 
-                System.out.println(boardLine.toString());
+                Log.d(TAG, boardLine.toString());
             }
         }
 

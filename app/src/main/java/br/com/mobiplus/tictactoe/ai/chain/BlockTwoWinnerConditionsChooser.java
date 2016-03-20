@@ -2,7 +2,6 @@ package br.com.mobiplus.tictactoe.ai.chain;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mobiplus.tictactoe.pojo.Board;
@@ -18,31 +17,26 @@ public class BlockTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
     public int chooseBestPlay(Board board) {
         Log.i(TAG, "BlockTwoWinnerConditionsChooser");
 
-        BoardLine[] boardLineArray = board.getBoardLineArray();
+        List<BoardLine> opponentOneOccupiedLineList = board.getOneOccupiedLineList("X");
 
-        List<BoardLine> opponentOneOccupiedCellList = new ArrayList<>();
+        if (opponentOneOccupiedLineList.size() > 1) {
+            for (int i = 0; i < opponentOneOccupiedLineList.size(); i++) {
+                BoardLine boardLineOut = opponentOneOccupiedLineList.get(i);
 
-        for (int i = 0; i < boardLineArray.length; i++) {
-            BoardLine boardLine = boardLineArray[i];
+                for (int j = 0; j < opponentOneOccupiedLineList.size(); j++) {
+                    if (i == j) {
+                        continue;
+                    }
 
-            if (boardLine.hasOneOccupiedCell("X")) {
-                opponentOneOccupiedCellList.add(boardLine);
+                    BoardLine boardLineIn = opponentOneOccupiedLineList.get(j);
+                    BoardCell intersectionBoardCell = boardLineOut.getEmptyIntersection(boardLineIn);
+
+                    if (intersectionBoardCell != null) {
+                        return intersectionBoardCell.getIndex();
+                    }
+                }
             }
         }
-
-        for (int i = 0; i < opponentOneOccupiedCellList.size(); i++) {
-            BoardLine boardLine = opponentOneOccupiedCellList.get(i);
-            List<BoardCell> boardCellList = boardLine.getBoardCellList();
-
-            for (int j = 0; j < boardCellList.size(); j++) {
-                BoardCell boardCell = boardCellList.get(j);
-
-//                if (boardCell.) {
-//
-//                }
-            }
-        }
-
 
         return mNext.chooseBestPlay(board);
     }

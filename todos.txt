@@ -1,27 +1,5 @@
-- OK Feedback on game is finished in draw
--
-
-
-
 - Try start center waiting opponent error
     http://www.cs.jhu.edu/~jorgev/cs106/ttt.pdf 1.3
-
-
-
-- Try to block win in this case
-   |   |
-   |   |
- X |   |
-
-   |   |
-   | O |
- X |   |
-
-   |   |
-   | O | X
- X |   |
-
-
 - When opponent start on edge, play on center waiting that opponent make a mistake.
     http://www.wikihow.com/Win-at-Tic-Tac-Toe - Method 2 - 3
  O |   |
@@ -33,3 +11,22 @@
    |   | O
  X | O |
    | X |
+
+
+
+
+Finished list
+
+- OK Feedback on game is finished in draw
+- OK Try to block win in this case
+   |   |
+   |   |
+ X |   |
+
+   |   |
+   | O |
+ X |   |
+
+   |   |
+   | O | X
+ X |   |

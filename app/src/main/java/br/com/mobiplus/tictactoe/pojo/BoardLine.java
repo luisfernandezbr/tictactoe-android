@@ -77,6 +77,24 @@ public class BoardLine {
         return result;
     }
 
+    public BoardCell getEmptyIntersection(BoardLine boardLine) {
+        List<BoardCell> otherBoardCellList = boardLine.getBoardCellList();
+
+        for (int i = 0; i < boardCellList.size(); i++) {
+            BoardCell boardCell = boardCellList.get(i);
+
+            for (int j = 0; j < otherBoardCellList.size(); j++) {
+                BoardCell otherBoardCell = otherBoardCellList.get(j);
+
+                if (boardCell.hasSamePosition(otherBoardCell) && boardCell.isEmpty() && otherBoardCell.isEmpty()) {
+                    return boardCell;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public BoardCell getBoardCell_1() {
         return boardCellList.get(0);
     }

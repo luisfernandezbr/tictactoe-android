@@ -89,4 +89,8 @@ public class BoardCell {
     public boolean hasSameValue(BoardCell boardCell) {
         return boardCell != null && this.isNotEmpty() && this.value.equals(boardCell.getValue());
     }
+
+    public boolean hasSamePosition(BoardCell boardCell) {
+        return boardCell != null && boardCell.getRow() == this.getRow() && boardCell.getCol() == this.getCol();
+    }
 }
