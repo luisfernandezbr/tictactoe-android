@@ -20,10 +20,10 @@ public class Board {
     };
 
 
-    public interface IBoardWinnerSearcher {
-        void onWinnerFounded();
+    public interface IBoardGameStateSearcher {
+        void onNextPlayRequired();
 
-        void onFinishSearch();
+        void onWinnerFounded();
 
         void onDraw();
     }
@@ -37,14 +37,14 @@ public class Board {
     }
 
     /**
-     * This method iterates over the eight lines of board, calling <code>IBoardIterator.onFinishSearch<code/>
+     * This method iterates over the eight lines of board, calling <code>IBoardIterator.onNextPlayRequired<code/>
      * eight times every time when called.
      * The <code>BoardLine</code> param contains three <code>BoardCell</code>s of the line,
      * with your value and your position.
      *
      * @param iterator
      */
-    public void searchGameState(final IBoardWinnerSearcher iterator) {
+    public void searchGameState(final IBoardGameStateSearcher iterator) {
 
         System.out.println("\n\n ============ \n\n");
 
@@ -71,7 +71,7 @@ public class Board {
         if (this.isFull()) {
             iterator.onDraw();
         } else {
-            iterator.onFinishSearch();
+            iterator.onNextPlayRequired();
         }
     }
 

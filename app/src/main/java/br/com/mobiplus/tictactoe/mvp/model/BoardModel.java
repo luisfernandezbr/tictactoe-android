@@ -32,29 +32,24 @@ public class BoardModel implements IBoardModel {
 
         mRepo.updateBoard(board);
 
-        board.searchGameState(new MyBoardWinnerSearcher(board, player));
+        board.searchGameState(new BoardGameStateSearcher(board, player));
     }
 
-    private class MyBoardWinnerSearcher implements Board.IBoardWinnerSearcher {
+    private class BoardGameStateSearcher implements Board.IBoardGameStateSearcher {
 
         private Board board;
         private Player player;
 
-        public MyBoardWinnerSearcher(final Board board, final Player player) {
+        public BoardGameStateSearcher(final Board board, final Player player) {
             this.board = board;
             this.player = player;
         }
 
         @Override
-        public void onFinishSearch() {
+        public void onNextPlayRequired() {
             GameStateEnum gameState;
             gameState = Player.PLAYER_HUMAN.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_PLAY : GameStateEnum.STATE_PLAYER_HUMAN_PLAY;
             BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
-        }
-
-        @Override
-        public void onDraw() {
-            BusProvider.getInstance().post(new EventOnGameStateChange(board, GameStateEnum.STATE_DRAW));
         }
 
         @Override
@@ -62,6 +57,12 @@ public class BoardModel implements IBoardModel {
             GameStateEnum gameState;
             gameState = Player.PLAYER_CPU.equals(player) ? GameStateEnum.STATE_PLAYER_CPU_WINS : GameStateEnum.STATE_PLAYER_HUMAN_WINS;
             BusProvider.getInstance().post(new EventOnGameStateChange(board, gameState));
+        }
+
+
+        @Override
+        public void onDraw() {
+            BusProvider.getInstance().post(new EventOnGameStateChange(board, GameStateEnum.STATE_DRAW));
         }
     }
 
