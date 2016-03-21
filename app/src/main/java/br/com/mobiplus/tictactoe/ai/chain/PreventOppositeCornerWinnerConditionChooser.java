@@ -12,7 +12,7 @@ public class PreventOppositeCornerWinnerConditionChooser extends AbstractBestPla
 
     @Override
     public int chooseBestPlay(Board board) {
-        Log.i(TAG, "BlockOppositeCornerWinnerConditionChooser");
+        Log.i(TAG, "PreventOppositeCornerWinnerConditionChooser");
 
         BoardCell[] cornerCells = board.getCornerCells();
         BoardCell centerCell = board.getCenterCell();

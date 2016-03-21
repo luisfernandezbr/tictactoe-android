@@ -11,7 +11,7 @@ public class PreventOpponentWinChooser extends WinPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
-        Log.i(TAG, "BlockOpponentWinChooser");
+        Log.i(TAG, "PreventOpponentWinChooser");
         return super.chooseBestPlay(board);
     }
 

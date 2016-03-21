@@ -15,7 +15,7 @@ public class PreventTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
-        Log.i(TAG, "BlockTwoWinnerConditionsChooser");
+        Log.i(TAG, "PreventTwoWinnerConditionsChooser");
 
         List<BoardLine> opponentOneOccupiedLineList = board.getOneOccupiedLineList("X");
 
