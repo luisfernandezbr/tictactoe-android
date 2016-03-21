@@ -4,6 +4,7 @@ import android.util.Log;
 
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardCell;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/20/16.
@@ -17,7 +18,7 @@ public class PreventOppositeCornerWinnerConditionChooser extends AbstractBestPla
         BoardCell[] cornerCells = board.getCornerCells();
         BoardCell centerCell = board.getCenterCell();
 
-        if (centerCell.hasValue("O")) {
+        if (centerCell.hasValue(Player.PLAYER_CPU.getSymbol())) {
             BoardCell boardCellTopLeft = cornerCells[0];
             BoardCell boardCellTopRight = cornerCells[1];
             BoardCell boardCellBottomLeft = cornerCells[2];

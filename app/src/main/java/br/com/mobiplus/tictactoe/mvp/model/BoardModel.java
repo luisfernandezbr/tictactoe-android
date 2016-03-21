@@ -25,9 +25,9 @@ public class BoardModel implements IBoardModel {
         final Board board = mRepo.getCurrentBoard();
 
         if (player.equals(Player.PLAYER_HUMAN)) {
-            board.updateBoard(playedIndex, "X");
+            board.updateBoard(playedIndex, Player.PLAYER_HUMAN.getSymbol());
         } else {
-            board.updateBoard(playedIndex, "O");
+            board.updateBoard(playedIndex, Player.PLAYER_CPU.getSymbol());
         }
 
         mRepo.updateBoard(board);

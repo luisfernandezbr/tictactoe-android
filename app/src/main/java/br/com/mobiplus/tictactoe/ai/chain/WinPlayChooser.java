@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardCell;
 import br.com.mobiplus.tictactoe.pojo.BoardLine;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/19/16.
@@ -39,6 +40,6 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
     }
 
     protected String getSymbolToSearch() {
-        return "O";
+        return Player.PLAYER_CPU.getSymbol();
     }
 }

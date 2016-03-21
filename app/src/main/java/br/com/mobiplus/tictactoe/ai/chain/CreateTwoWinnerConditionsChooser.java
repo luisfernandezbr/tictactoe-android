@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardCell;
 import br.com.mobiplus.tictactoe.pojo.BoardLine;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/19/16.
@@ -25,7 +26,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
             for (int i = 0; i < cornerCells.length; i++) {
                 BoardCell cornerCell = cornerCells[i];
 
-                if (cornerCell.hasValue("O")) {
+                if (cornerCell.hasValue(Player.PLAYER_CPU.getSymbol())) {
                     List<BoardCell> freeCornerCells = board.getFreeCornerCells();
 
                     for (int j = 0; j < freeCornerCells.size(); j++) {
@@ -46,7 +47,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
         for (int i = 0; i < boardLineArray.length; i++) {
             BoardLine boardLine = boardLineArray[i];
 
-            if (boardLine.hasOneOccupiedCell("O")) {
+            if (boardLine.hasOneOccupiedCell(Player.PLAYER_CPU.getSymbol())) {
                 oneOccupiedCellList.add(boardLine);
 
                 Log.d(TAG, boardLine.toString());

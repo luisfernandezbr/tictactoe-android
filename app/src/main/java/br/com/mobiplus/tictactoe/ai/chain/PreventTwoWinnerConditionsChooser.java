@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.BoardCell;
 import br.com.mobiplus.tictactoe.pojo.BoardLine;
+import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
  * Created by luis.fernandez on 3/20/16.
@@ -17,7 +18,7 @@ public class PreventTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
     public int chooseBestPlay(Board board) {
         Log.i(TAG, "PreventTwoWinnerConditionsChooser");
 
-        List<BoardLine> opponentOneOccupiedLineList = board.getOneOccupiedLineList("X");
+        List<BoardLine> opponentOneOccupiedLineList = board.getOneOccupiedLineList(Player.PLAYER_HUMAN.getSymbol());
 
         if (opponentOneOccupiedLineList.size() > 1) {
             for (int i = 0; i < opponentOneOccupiedLineList.size(); i++) {
