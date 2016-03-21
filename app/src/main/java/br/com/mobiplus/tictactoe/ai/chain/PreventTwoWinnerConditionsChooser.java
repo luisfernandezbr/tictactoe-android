@@ -2,6 +2,7 @@ package br.com.mobiplus.tictactoe.ai.chain;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mobiplus.tictactoe.pojo.Board;
@@ -19,6 +20,7 @@ public class PreventTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
         Log.i(TAG, "PreventTwoWinnerConditionsChooser");
 
         List<BoardLine> opponentOneOccupiedLineList = board.getOneOccupiedLineList(Player.PLAYER_HUMAN.getSymbol());
+        List<BoardCell> candidates = new ArrayList<>(2);
 
         if (opponentOneOccupiedLineList.size() > 1) {
             for (int i = 0; i < opponentOneOccupiedLineList.size(); i++) {
@@ -33,10 +35,31 @@ public class PreventTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
                     BoardCell intersectionBoardCell = boardLineOut.getEmptyIntersection(boardLineIn);
 
                     if (intersectionBoardCell != null) {
-                        return intersectionBoardCell.getIndex();
+                        candidates.add(intersectionBoardCell);
                     }
                 }
             }
+        }
+
+        BoardCell selectedCell = null;
+
+        for (int i = 0; i < candidates.size(); i++) {
+            if (selectedCell == null) {
+                selectedCell = candidates.get(i);
+
+                if (selectedCell.isCornerCell()) {
+                    break;
+                }
+                continue;
+            }
+
+            if (candidates.get(i).isCornerCell() && !selectedCell.isCornerCell()) {
+                selectedCell = candidates.get(i);
+            }
+        }
+
+        if (selectedCell != null) {
+            return selectedCell.getIndex();
         }
 
         return super.handleNext(board);

@@ -44,6 +44,7 @@ public class BoardView extends BaseView implements IBoardView {
                 @Override
                 public void onClick(View v) {
                     int clickedPosition = (int) v.getTag();
+                    BoardView.this.enableCpuStartButton(false);
                     BusProvider.getInstance().post(new EventOnHumanPlay(clickedPosition));
                 }
             });
@@ -105,10 +106,10 @@ public class BoardView extends BaseView implements IBoardView {
     public void finishOnDraw(Board board) {
         this.enableBoardCellsClick(false);
         this.updateBoard(board);
-        this.defineDraw();
+        this.defineResultDraw();
     }
 
-    private void defineDraw() {
+    private void defineResultDraw() {
         this.enableCpuStartButton(true);
         this.showResult(R.string.mp_ttt_matchresult_draw);
     }
@@ -139,12 +140,27 @@ public class BoardView extends BaseView implements IBoardView {
         TextView textResult = (TextView) findViewById(R.id.textMatchResult);
         textResult.setVisibility(View.VISIBLE);
         textResult.setText(stringResId);
+        textResult.setTextColor(mActivity.getResources().getColor(this.getResultColor(stringResId)));
     }
 
     private void enableBoardCellsClick(boolean enable) {
         for (int i = 0; i < mButtonArray.length; i++) {
             findViewById(mButtonArray[i]).setClickable(enable);
             findViewById(mButtonArray[i]).setEnabled(enable);
+        }
+    }
+
+    private int getResultColor(@StringRes int stringResId) {
+        switch (stringResId) {
+            case R.string.mp_ttt_matchresult_winner_cpu : {
+                return android.R.color.holo_red_dark;
+            }
+            case R.string.mp_ttt_matchresult_winner_human : {
+                return android.R.color.holo_green_dark;
+            }
+            default: {
+                return android.R.color.background_dark;
+            }
         }
     }
 }

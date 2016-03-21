@@ -14,7 +14,106 @@
 
 
 
-- http://www.novelgames.com/en/gametips/tictactoe-win/
+
+
+CASE 1
+
+Repo: ------------
+03-20 22:59:17.004 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    |   |
+03-20 22:59:17.004 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.004 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X |
+03-20 22:59:17.004 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    |   |
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventOpponentWinChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: CreateTwoWinnerConditionsChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventOppositeCornerWinnerConditionChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventTwoWinnerConditionsChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: CenterPlayChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: CornerPlayChooser
+03-20 22:59:17.008 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.009 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   |
+03-20 22:59:17.009 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.009 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X |
+03-20 22:59:17.009 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.009 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    |   |
+03-20 22:59:17.010 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:17.733 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   |
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X |
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    |   | X
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventOpponentWinChooser
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:17.734 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: CreateTwoWinnerConditionsChooser
+03-20 22:59:17.735 19225-19225/br.com.mobiplus.tictactoe D/AbstractBestPlayChooser: ### BoardLine ###
+                                                                                        BoardCell [row=0], col=0], value=O]
+                                                                                        BoardCell [row=0], col=1], value=null]
+                                                                                        BoardCell [row=0], col=2], value=null]
+03-20 22:59:17.735 19225-19225/br.com.mobiplus.tictactoe D/AbstractBestPlayChooser: ### BoardLine ###
+                                                                                        BoardCell [row=0], col=0], value=O]
+                                                                                        BoardCell [row=1], col=0], value=null]
+                                                                                        BoardCell [row=2], col=0], value=null]
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventOppositeCornerWinnerConditionChooser
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventTwoWinnerConditionsChooser
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   |
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X | O
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    |   | X
+03-20 22:59:17.736 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   |
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X | O
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  X |   | X
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: PreventOpponentWinChooser
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe I/AbstractBestPlayChooser: WinPlayChooser
+03-20 22:59:32.223 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   |
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X | O
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  X | O | X
+03-20 22:59:32.224 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+03-20 22:59:35.081 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:35.081 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  O |   | X
+03-20 22:59:35.082 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:35.082 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:    | X | O
+03-20 22:59:35.082 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo: ------------
+03-20 22:59:35.082 19225-19225/br.com.mobiplus.tictactoe D/BoardRepo:  X | O | X
+03-20 22:59:35.082 19225-19225/br.com.mobiplus.tictactoe I/System.out:  ============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Finished list
+- OK Feedback on game is finished in draw
+
+- OK http://www.novelgames.com/en/gametips/tictactoe-win/
     Case: You start by occupying a corner:
     Current: The CPU is choosing a wrong option and loose
  O |   |
@@ -41,10 +140,6 @@
  O |   |
  X | X |
 
-
-Finished list
-
-- OK Feedback on game is finished in draw
 - OK Try to block win in this case
    |   |
    |   |

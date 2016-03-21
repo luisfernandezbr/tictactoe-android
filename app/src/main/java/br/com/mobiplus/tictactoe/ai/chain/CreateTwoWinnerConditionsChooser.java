@@ -33,7 +33,7 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
                         BoardCell edgeBetween = board.getEdgeBetween(cornerCell, freeCornerCells.get(j));
 
                         if (edgeBetween.isEmpty()) {
-                            return edgeBetween.getIndex();
+                            return freeCornerCells.get(j).getIndex();
                         }
                     }
                 }
@@ -49,8 +49,6 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
 
             if (boardLine.hasOneOccupiedCell(Player.PLAYER_CPU.getSymbol())) {
                 oneOccupiedCellList.add(boardLine);
-
-                Log.d(TAG, boardLine.toString());
             }
         }
 

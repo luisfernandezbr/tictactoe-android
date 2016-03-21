@@ -90,13 +90,13 @@ public class BoardLine {
         return null;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("\n\n### BoardLine ###\n");
-
-        for (int i = 0; i < boardCellList.size(); i++) {
-            sb.append(boardCellList.get(i).toString() + '\n');
-        }
-        return sb.toString();
-    }
+//    @Override
+//    public String toString() {
+//        final StringBuilder sb = new StringBuilder("\n\n### BoardLine ###\n");
+//
+//        for (int i = 0; i < boardCellList.size(); i++) {
+//            sb.append(boardCellList.get(i).toString() + '\n');
+//        }
+//        return sb.toString();
+//    }
 }

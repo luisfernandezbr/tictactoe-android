@@ -60,6 +60,18 @@ public class BoardCell {
         return boardCell != null && boardCell.getRow() == this.getRow() && boardCell.getCol() == this.getCol();
     }
 
+    public boolean isCenterCell() {
+        return this.getIndex() == 4;
+    }
+
+    public boolean isCornerCell() {
+        return this.getIndex() == 0 || this.getIndex() == 2 || this.getIndex() == 6 || this.getIndex() == 8;
+    }
+
+    public boolean isEdgeCell() {
+        return this.getIndex() == 1 || this.getIndex() == 3 || this.getIndex() == 5 || this.getIndex() == 7;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -84,14 +96,13 @@ public class BoardCell {
         return value.hashCode();
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("    BoardCell ");
-        sb.append("[row=").append(row);
-        sb.append("], col=").append(col);
-        sb.append("], value=").append(value);
-        sb.append("]");
-        return sb.toString();
-    }
-
+//    @Override
+//    public String toString() {
+//        final StringBuilder sb = new StringBuilder("    BoardCell ");
+//        sb.append("[row=").append(row);
+//        sb.append("], col=").append(col);
+//        sb.append("], value=").append(value);
+//        sb.append("]");
+//        return sb.toString();
+//    }
 }

@@ -1,5 +1,8 @@
 package br.com.mobiplus.tictactoe.ai.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.PreventOpponentWinChooser;
 import br.com.mobiplus.tictactoe.ai.chain.PreventOppositeCornerWinnerConditionChooser;
@@ -37,15 +40,34 @@ public class ComputerAiModel implements IComputerAiModel {
     }
 
     private AbstractBestPlayChooser getExpertMode() {
-        cornerPlayChooser.setNextInChain(randomPlayChooser);
-        centerPlayChooser.setNextInChain(cornerPlayChooser);
-        createTwoWinnerConditionsChooser.setNextInChain(centerPlayChooser);
-        preventTwoWinnerConditionsChooser.setNextInChain(createTwoWinnerConditionsChooser);
-        preventOppositeCornerWinnerConditionChooser.setNextInChain(preventTwoWinnerConditionsChooser);
-        preventOpponentWinChooser.setNextInChain(preventOppositeCornerWinnerConditionChooser);
-        winPlayChooser.setNextInChain(preventOpponentWinChooser);
+        List<AbstractBestPlayChooser> chainList = new ArrayList<>();
+        chainList.add(randomPlayChooser);
+        chainList.add(cornerPlayChooser);
+        chainList.add(centerPlayChooser);
 
-        return winPlayChooser;
+        chainList.add(preventTwoWinnerConditionsChooser);
+        chainList.add(preventOppositeCornerWinnerConditionChooser);
+
+        chainList.add(createTwoWinnerConditionsChooser);
+
+        chainList.add(preventOpponentWinChooser);
+
+        chainList.add(winPlayChooser);
+
+        AbstractBestPlayChooser lastChooser = null;
+        AbstractBestPlayChooser currentChooser = null;
+
+        for (int i = 0; i < chainList.size(); i++) {
+            currentChooser = chainList.get(i);
+
+            if (lastChooser != null) {
+                currentChooser.setNextInChain(lastChooser);
+            }
+
+            lastChooser = currentChooser;
+        }
+
+        return currentChooser;
     }
 
     private AbstractBestPlayChooser getMedium() {
