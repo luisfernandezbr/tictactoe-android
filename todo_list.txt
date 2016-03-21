@@ -1,0 +1,8 @@
+- Unit Tests
+- Create option to choose mode (User vs CPU and User vs User)
+- Create option to choose CPU difficulty levels
+- Put to work landscape mode
+- Create history of User vs CPU matches
+- Add AdMob library
+- Integrate with Google Play Games to use Multiplayer Mode.
+
