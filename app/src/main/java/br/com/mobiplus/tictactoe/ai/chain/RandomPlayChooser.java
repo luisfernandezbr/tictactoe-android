@@ -2,7 +2,11 @@ package br.com.mobiplus.tictactoe.ai.chain;
 
 import android.util.Log;
 
+import java.util.List;
+import java.util.Random;
+
 import br.com.mobiplus.tictactoe.pojo.Board;
+import br.com.mobiplus.tictactoe.pojo.BoardCell;
 
 /**
  * Created by luis.fernandez on 3/19/16.
@@ -12,28 +16,12 @@ public class RandomPlayChooser extends AbstractBestPlayChooser {
     public int chooseBestPlay(Board board) {
         Log.i(TAG, "RandomPlayChooser");
 
-        int result = 0;
+        List<BoardCell> freeCells = board.getFreeCells();
 
-        boolean search = true;
+        int size = freeCells.size();
+        Random random = new Random();
+        int index = random.nextInt(size);
 
-        SEARCH_BEST_PLAY:
-        while (search) {
-
-            String[][] boardState = board.getBoard();
-
-            for (int row = 0; row < boardState.length; row++) {
-                for (int col = 0; col < boardState[row].length; col++) {
-                    int index = (row * 3) + col;
-
-                    String boardPosition = boardState[row][col];
-
-                    if (boardPosition == null) {
-                        result = index;
-                        break SEARCH_BEST_PLAY;
-                    }
-                }
-            }
-        }
-        return result;
+        return freeCells.get(index).getIndex();
     }
 }
