@@ -1,7 +1,6 @@
 package br.com.mobiplus.tictactoe.pojo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

@@ -1,6 +1,5 @@
 package br.com.mobiplus.tictactoe.mvp.repo;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import java.util.List;

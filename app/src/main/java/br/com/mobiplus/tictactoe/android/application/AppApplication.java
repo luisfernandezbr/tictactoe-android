@@ -1,7 +1,6 @@
 package br.com.mobiplus.tictactoe.android.application;
 
 import android.app.Application;
-import android.content.Context;
 
 /**
  * Created by luis.fernandez on 3/16/16.
