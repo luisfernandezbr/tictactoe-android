@@ -44,14 +44,10 @@ public class ComputerAiModel implements IComputerAiModel {
         chainList.add(randomPlayChooser);
         chainList.add(cornerPlayChooser);
         chainList.add(centerPlayChooser);
-
         chainList.add(preventTwoWinnerConditionsChooser);
         chainList.add(preventOppositeCornerWinnerConditionChooser);
-
         chainList.add(createTwoWinnerConditionsChooser);
-
         chainList.add(preventOpponentWinChooser);
-
         chainList.add(winPlayChooser);
 
         AbstractBestPlayChooser lastChooser = null;
@@ -70,15 +66,57 @@ public class ComputerAiModel implements IComputerAiModel {
         return currentChooser;
     }
 
-    private AbstractBestPlayChooser getMedium() {
-        cornerPlayChooser.setNextInChain(randomPlayChooser);
-        centerPlayChooser.setNextInChain(cornerPlayChooser);
-        preventOppositeCornerWinnerConditionChooser.setNextInChain(centerPlayChooser);
-        preventTwoWinnerConditionsChooser.setNextInChain(preventOppositeCornerWinnerConditionChooser);
-        createTwoWinnerConditionsChooser.setNextInChain(preventTwoWinnerConditionsChooser);
-        preventOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
-        winPlayChooser.setNextInChain(preventOpponentWinChooser);
+    private AbstractBestPlayChooser getMediumMode() {
+        List<AbstractBestPlayChooser> chainList = new ArrayList<>();
+        chainList.add(randomPlayChooser);
+        chainList.add(cornerPlayChooser);
+        chainList.add(centerPlayChooser);
+        //chainList.add(preventTwoWinnerConditionsChooser);
+        chainList.add(preventOppositeCornerWinnerConditionChooser);
+        chainList.add(createTwoWinnerConditionsChooser);
+        chainList.add(preventOpponentWinChooser);
+        chainList.add(winPlayChooser);
 
-        return winPlayChooser;
+        AbstractBestPlayChooser lastChooser = null;
+        AbstractBestPlayChooser currentChooser = null;
+
+        for (int i = 0; i < chainList.size(); i++) {
+            currentChooser = chainList.get(i);
+
+            if (lastChooser != null) {
+                currentChooser.setNextInChain(lastChooser);
+            }
+
+            lastChooser = currentChooser;
+        }
+
+        return currentChooser;
+    }
+
+    private AbstractBestPlayChooser getSoftMode() {
+        List<AbstractBestPlayChooser> chainList = new ArrayList<>();
+        chainList.add(randomPlayChooser);
+        chainList.add(cornerPlayChooser);
+        chainList.add(centerPlayChooser);
+        //chainList.add(preventTwoWinnerConditionsChooser);
+        //chainList.add(preventOppositeCornerWinnerConditionChooser);
+        chainList.add(createTwoWinnerConditionsChooser);
+        chainList.add(preventOpponentWinChooser);
+        chainList.add(winPlayChooser);
+
+        AbstractBestPlayChooser lastChooser = null;
+        AbstractBestPlayChooser currentChooser = null;
+
+        for (int i = 0; i < chainList.size(); i++) {
+            currentChooser = chainList.get(i);
+
+            if (lastChooser != null) {
+                currentChooser.setNextInChain(lastChooser);
+            }
+
+            lastChooser = currentChooser;
+        }
+
+        return currentChooser;
     }
 }
