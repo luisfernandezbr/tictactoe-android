@@ -1,17 +1,10 @@
 <resources>
-    <string name="app_name">mobiplus-tictactoe</string>
-
-    <string name="action_settings">Settings</string>
-
-    <string name="hello_world">Hello world!</string>
-    <!-- -
-        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-
+    <string name="app_name">Tic Tac Toe</string>
 
     <string name="mp_ttt_matchresult_draw">Draw</string>
     <string name="mp_ttt_matchresult_winner_human">You</string>
     <string name="mp_ttt_matchresult_winner_cpu">CPU</string>
+    <string name="mp_tictactoe_label_winner">Winner:</string>
+    <string name="mp_tictactoe_button_cpu_start">CPU Start</string>
+    <string name="mp_tictactoe_button_restart">Restart</string>
 </resources>

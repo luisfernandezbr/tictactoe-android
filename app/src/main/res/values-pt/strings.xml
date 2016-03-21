@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Jogo da Velha</string>
+
+    <string name="mp_ttt_matchresult_draw">Empate</string>
+    <string name="mp_ttt_matchresult_winner_human">Você</string>
+    <string name="mp_ttt_matchresult_winner_cpu">Máquina</string>
+    <string name="mp_tictactoe_label_winner">Vencedor:</string>
+    <string name="mp_tictactoe_button_cpu_start">Máquina Começa</string>
+    <string name="mp_tictactoe_button_restart">Reiniciar</string>
+</resources>

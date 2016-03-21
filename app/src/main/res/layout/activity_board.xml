@@ -19,13 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="CPU Start"/>
+            android:text="@string/mp_tictactoe_button_cpu_start"/>
 
         <Button
             android:id="@+id/buttonRestart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restart"/>
+            android:text="@string/mp_tictactoe_button_restart"/>
     </LinearLayout>
 
     <include
@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Winner:"
+            android:text="@string/mp_tictactoe_label_winner"
             android:textSize="14sp"
             />
 
