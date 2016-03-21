@@ -8,7 +8,7 @@ import br.com.mobiplus.tictactoe.pojo.BoardCell;
 /**
  * Created by luis.fernandez on 3/20/16.
  */
-public class BlockOppositeCornerWinnerConditionChooser extends AbstractBestPlayChooser {
+public class PreventOppositeCornerWinnerConditionChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
@@ -28,6 +28,6 @@ public class BlockOppositeCornerWinnerConditionChooser extends AbstractBestPlayC
             }
         }
 
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 }

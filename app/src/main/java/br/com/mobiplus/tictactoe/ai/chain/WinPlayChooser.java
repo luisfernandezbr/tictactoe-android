@@ -19,7 +19,6 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
 
         BoardLine[] boardLineArray = board.getBoardLineArray();
 
-        //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < boardLineArray.length; i++) {
             BoardLine boardLine = boardLineArray[i];
 
@@ -36,7 +35,7 @@ public class WinPlayChooser extends AbstractBestPlayChooser {
             }
         }
 
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 
     protected String getSymbolToSearch() {

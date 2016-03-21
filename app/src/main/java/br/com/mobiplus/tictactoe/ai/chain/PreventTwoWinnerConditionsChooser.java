@@ -11,7 +11,7 @@ import br.com.mobiplus.tictactoe.pojo.BoardLine;
 /**
  * Created by luis.fernandez on 3/20/16.
  */
-public class BlockTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
+public class PreventTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
 
     @Override
     public int chooseBestPlay(Board board) {
@@ -38,6 +38,6 @@ public class BlockTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
             }
         }
 
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 }

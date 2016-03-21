@@ -26,7 +26,6 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
                 BoardCell cornerCell = cornerCells[i];
 
                 if (cornerCell.hasValue("O")) {
-                    //List<BoardCell> occupiedCornerCells = board.getOccupiedCornerCells();
                     List<BoardCell> freeCornerCells = board.getFreeCornerCells();
 
                     for (int j = 0; j < freeCornerCells.size(); j++) {
@@ -84,6 +83,6 @@ public class CreateTwoWinnerConditionsChooser extends AbstractBestPlayChooser {
             }
         }
 
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 }

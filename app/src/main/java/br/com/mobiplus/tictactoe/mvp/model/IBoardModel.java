@@ -11,5 +11,5 @@ public interface IBoardModel {
 
     void restartGame();
 
-    void startCpu();
+    void cpuStartingGame();
 }

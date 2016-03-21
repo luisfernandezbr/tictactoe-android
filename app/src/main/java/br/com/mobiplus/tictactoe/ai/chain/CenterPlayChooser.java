@@ -20,6 +20,6 @@ public class CenterPlayChooser extends AbstractBestPlayChooser {
             return centerCell.getIndex();
         }
 
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 }

@@ -13,11 +13,15 @@ public abstract class AbstractBestPlayChooser {
 
     public abstract int chooseBestPlay(Board board);
 
-    protected boolean hasNext() {
-        return mNext != null;
-    }
-
     public void setNextInChain(AbstractBestPlayChooser next) {
         this.mNext = next;
+    }
+
+    protected int handleNext(Board board) {
+        if (mNext != null) {
+            return mNext.chooseBestPlay(board);
+        } else {
+            return new RandomPlayChooser().chooseBestPlay(board);
+        }
     }
 }

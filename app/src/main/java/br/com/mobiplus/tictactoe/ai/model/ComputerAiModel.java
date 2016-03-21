@@ -1,9 +1,9 @@
 package br.com.mobiplus.tictactoe.ai.model;
 
 import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
-import br.com.mobiplus.tictactoe.ai.chain.BlockOpponentWinChooser;
-import br.com.mobiplus.tictactoe.ai.chain.BlockOppositeCornerWinnerConditionChooser;
-import br.com.mobiplus.tictactoe.ai.chain.BlockTwoWinnerConditionsChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventOpponentWinChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventOppositeCornerWinnerConditionChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventTwoWinnerConditionsChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CenterPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CornerPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CreateTwoWinnerConditionsChooser;
@@ -18,37 +18,45 @@ import br.com.mobiplus.tictactoe.pojo.Board;
  */
 public class ComputerAiModel implements IComputerAiModel {
 
+    AbstractBestPlayChooser winPlayChooser = new WinPlayChooser();
+    AbstractBestPlayChooser preventOpponentWinChooser = new PreventOpponentWinChooser();
+    AbstractBestPlayChooser createTwoWinnerConditionsChooser = new CreateTwoWinnerConditionsChooser();
+    AbstractBestPlayChooser preventTwoWinnerConditionsChooser = new PreventTwoWinnerConditionsChooser();
+    AbstractBestPlayChooser preventOppositeCornerWinnerConditionChooser = new PreventOppositeCornerWinnerConditionChooser();
+    AbstractBestPlayChooser centerPlayChooser = new CenterPlayChooser();
+    AbstractBestPlayChooser cornerPlayChooser = new CornerPlayChooser();
+    AbstractBestPlayChooser randomPlayChooser = new RandomPlayChooser();
+
     @Override
     public void play(final Board board) {
         BusProvider.getInstance().post(new EventOnCpuPlay(this.defineNextIndexPlay(board)));
     }
 
     private int defineNextIndexPlay(Board board) {
-        AbstractBestPlayChooser winPlayChooser = new WinPlayChooser();
-        AbstractBestPlayChooser blockOpponentWinChooser = new BlockOpponentWinChooser();
-        AbstractBestPlayChooser createTwoWinnerConditionsChooser = new CreateTwoWinnerConditionsChooser();
-        AbstractBestPlayChooser blockTwoWinnerConditionsChooser = new BlockTwoWinnerConditionsChooser();
-        AbstractBestPlayChooser blockOppositeCornerWinnerConditionChooser = new BlockOppositeCornerWinnerConditionChooser();
-        AbstractBestPlayChooser centerPlayChooser = new CenterPlayChooser();
-        AbstractBestPlayChooser cornerPlayChooser = new CornerPlayChooser();
-        AbstractBestPlayChooser randomPlayChooser = new RandomPlayChooser();
+        return this.getExpertMode().chooseBestPlay(board);
+    }
 
-//        cornerPlayChooser.setNextInChain(randomPlayChooser);
-//        centerPlayChooser.setNextInChain(cornerPlayChooser);
-//        blockOppositeCornerWinnerConditionChooser.setNextInChain(centerPlayChooser);
-//        blockTwoWinnerConditionsChooser.setNextInChain(blockOppositeCornerWinnerConditionChooser);
-//        createTwoWinnerConditionsChooser.setNextInChain(blockTwoWinnerConditionsChooser);
-//        blockOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
-//        winPlayChooser.setNextInChain(blockOpponentWinChooser);
-
+    private AbstractBestPlayChooser getExpertMode() {
         cornerPlayChooser.setNextInChain(randomPlayChooser);
         centerPlayChooser.setNextInChain(cornerPlayChooser);
         createTwoWinnerConditionsChooser.setNextInChain(centerPlayChooser);
-        blockTwoWinnerConditionsChooser.setNextInChain(createTwoWinnerConditionsChooser);
-        blockOppositeCornerWinnerConditionChooser.setNextInChain(blockTwoWinnerConditionsChooser);
-        blockOpponentWinChooser.setNextInChain(blockOppositeCornerWinnerConditionChooser);
-        winPlayChooser.setNextInChain(blockOpponentWinChooser);
+        preventTwoWinnerConditionsChooser.setNextInChain(createTwoWinnerConditionsChooser);
+        preventOppositeCornerWinnerConditionChooser.setNextInChain(preventTwoWinnerConditionsChooser);
+        preventOpponentWinChooser.setNextInChain(preventOppositeCornerWinnerConditionChooser);
+        winPlayChooser.setNextInChain(preventOpponentWinChooser);
 
-        return winPlayChooser.chooseBestPlay(board);
+        return winPlayChooser;
+    }
+
+    private AbstractBestPlayChooser getMedium() {
+        cornerPlayChooser.setNextInChain(randomPlayChooser);
+        centerPlayChooser.setNextInChain(cornerPlayChooser);
+        preventOppositeCornerWinnerConditionChooser.setNextInChain(centerPlayChooser);
+        preventTwoWinnerConditionsChooser.setNextInChain(preventOppositeCornerWinnerConditionChooser);
+        createTwoWinnerConditionsChooser.setNextInChain(preventTwoWinnerConditionsChooser);
+        preventOpponentWinChooser.setNextInChain(createTwoWinnerConditionsChooser);
+        winPlayChooser.setNextInChain(preventOpponentWinChooser);
+
+        return winPlayChooser;
     }
 }

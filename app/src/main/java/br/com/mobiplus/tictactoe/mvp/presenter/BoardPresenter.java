@@ -12,11 +12,11 @@ import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
 import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
-import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
+import br.com.mobiplus.tictactoe.otto.event.EventOnRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
@@ -29,6 +29,10 @@ public class BoardPresenter implements IBoardPresenter {
     private IBoardModel mModel;
     private IComputerAiModel mComputerAiModel;
 
+    /**
+     * Creating dependencies instances here for simplicity
+     * @param activity
+     */
     public BoardPresenter(Activity activity) {
         this.mView = new BoardView(activity);
         this.mModel = new BoardModel();
@@ -36,8 +40,8 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void viewOnCpuStarts(EventOnCpuStart eventOnCpuStart) {
-        mModel.startCpu();
+    public void viewOnCpuStart(EventOnCpuStart eventOnCpuStart) {
+        mModel.cpuStartingGame();
     }
 
     @Subscribe
@@ -46,7 +50,7 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void viewOnRestartGame(EventRestartGame eventRestartGame) {
+    public void viewOnRestartGame(EventOnRestartGame eventOnRestartGame) {
         mModel.restartGame();
     }
 
@@ -73,7 +77,7 @@ public class BoardPresenter implements IBoardPresenter {
     }
 
     @Subscribe
-    public void cpuOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
+    public void aiOnCpuPlay(EventOnCpuPlay eventOnCpuPlay) {
         mModel.play(Player.PLAYER_CPU, eventOnCpuPlay.getPlayedIndex());
     }
 

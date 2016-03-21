@@ -1,19 +1,17 @@
 package br.com.mobiplus.tictactoe.mvp.view;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.EventOnHumanPlay;
+import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
-import br.com.mobiplus.tictactoe.otto.event.EventRestartGame;
+import br.com.mobiplus.tictactoe.otto.event.EventOnRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
@@ -70,7 +68,7 @@ public class BoardView extends BaseView implements IBoardView {
                 BoardView.this.enableBoardCellsClick(true);
                 BoardView.this.resetResultView();
                 BoardView.this.enableCpuStartButton(true);
-                BusProvider.getInstance().post(new EventRestartGame());
+                BusProvider.getInstance().post(new EventOnRestartGame());
             }
         });
     }

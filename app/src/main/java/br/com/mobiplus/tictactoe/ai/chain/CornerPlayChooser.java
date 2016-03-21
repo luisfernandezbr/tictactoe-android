@@ -22,17 +22,6 @@ public class CornerPlayChooser extends AbstractBestPlayChooser {
             return freeCornerCells.get(i).getIndex();
         }
 
-//        BoardCell[] cornerCellsArray = board.getCornerCells();
-//
-//        for (int i = 0; i < cornerCellsArray.length; i++) {
-//            BoardCell boardCell = cornerCellsArray[i];
-//
-//            if (boardCell.isEmpty()) {
-//                return boardCell.getIndex();
-//            }
-//        }
-
-
-        return mNext.chooseBestPlay(board);
+        return super.handleNext(board);
     }
 }

@@ -52,6 +52,14 @@ public class BoardCell {
         return !isEmpty() && this.value.equals(value);
     }
 
+    public boolean hasSameValue(BoardCell boardCell) {
+        return boardCell != null && this.isNotEmpty() && this.value.equals(boardCell.getValue());
+    }
+
+    public boolean hasSamePosition(BoardCell boardCell) {
+        return boardCell != null && boardCell.getRow() == this.getRow() && boardCell.getCol() == this.getCol();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,19 +86,12 @@ public class BoardCell {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("    BoardCell { ");
+        final StringBuilder sb = new StringBuilder("    BoardCell ");
         sb.append("[row=").append(row);
         sb.append("], col=").append(col);
         sb.append("], value=").append(value);
-        sb.append("]}");
+        sb.append("]");
         return sb.toString();
     }
 
-    public boolean hasSameValue(BoardCell boardCell) {
-        return boardCell != null && this.isNotEmpty() && this.value.equals(boardCell.getValue());
-    }
-
-    public boolean hasSamePosition(BoardCell boardCell) {
-        return boardCell != null && boardCell.getRow() == this.getRow() && boardCell.getCol() == this.getCol();
-    }
 }

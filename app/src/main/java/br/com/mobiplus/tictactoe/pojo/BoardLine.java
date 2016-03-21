@@ -16,10 +16,6 @@ public class BoardLine {
         boardCellList.add(boardCell_3);
     }
 
-    public void addBoardCell(BoardCell boardCell) {
-        boardCellList.add(boardCell);
-    }
-
     public List<BoardCell> getBoardCellList() {
         return boardCellList;
     }
@@ -28,7 +24,6 @@ public class BoardLine {
         return boardCellList.get(0) != null &&
                 boardCellList.get(0).equals(boardCellList.get(1)) &&
                 boardCellList.get(1).equals(boardCellList.get(2));
-
     }
 
     public boolean hasOneOccupiedCell(String symbol) {
@@ -93,18 +88,6 @@ public class BoardLine {
         }
 
         return null;
-    }
-
-    public BoardCell getBoardCell_1() {
-        return boardCellList.get(0);
-    }
-
-    public BoardCell getBoardCell_2() {
-        return boardCellList.get(1);
-    }
-
-    public BoardCell getBoardCell_3() {
-        return boardCellList.get(2);
     }
 
     @Override

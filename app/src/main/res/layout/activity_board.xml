@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:animateLayoutChanges="true"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -28,9 +29,9 @@
     </LinearLayout>
 
     <include
+        layout="@layout/comp_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/comp_board"
         android:layout_gravity="center"/>
 
     <LinearLayout
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="30dp"
+        android:animateLayoutChanges="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone">
