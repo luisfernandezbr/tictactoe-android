@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
+import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -152,10 +152,10 @@ public class BoardView extends BaseView implements IBoardView {
 
     private int getResultColor(@StringRes int stringResId) {
         switch (stringResId) {
-            case R.string.mp_ttt_matchresult_winner_cpu : {
+            case R.string.mp_ttt_matchresult_winner_cpu: {
                 return android.R.color.holo_red_dark;
             }
-            case R.string.mp_ttt_matchresult_winner_human : {
+            case R.string.mp_ttt_matchresult_winner_human: {
                 return android.R.color.holo_green_dark;
             }
             default: {

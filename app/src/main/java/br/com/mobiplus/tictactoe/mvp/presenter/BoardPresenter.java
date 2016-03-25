@@ -12,10 +12,10 @@ import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.view.IBoardView;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
-import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnCpuStart;
 import br.com.mobiplus.tictactoe.otto.event.EventOnGameStateChange;
+import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.otto.event.EventOnRestartGame;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
@@ -31,6 +31,7 @@ public class BoardPresenter implements IBoardPresenter {
 
     /**
      * Creating dependencies instances here for simplicity
+     *
      * @param activity
      */
     public BoardPresenter(Activity activity) {

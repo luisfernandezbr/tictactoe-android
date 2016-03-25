@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mobiplus.tictactoe.ai.chain.AbstractBestPlayChooser;
-import br.com.mobiplus.tictactoe.ai.chain.PreventOpponentWinChooser;
-import br.com.mobiplus.tictactoe.ai.chain.PreventOppositeCornerWinnerConditionChooser;
-import br.com.mobiplus.tictactoe.ai.chain.PreventTwoWinnerConditionsChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CenterPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CornerPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.CreateTwoWinnerConditionsChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventOpponentWinChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventOppositeCornerWinnerConditionChooser;
+import br.com.mobiplus.tictactoe.ai.chain.PreventTwoWinnerConditionsChooser;
 import br.com.mobiplus.tictactoe.ai.chain.RandomPlayChooser;
 import br.com.mobiplus.tictactoe.ai.chain.WinPlayChooser;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
