@@ -1,0 +1,5 @@
+<resources>
+    <string name="game_atlas">game.png</string>
+    <string name="main_scene_background">backgrounds/main_scene_background.png</string>
+    <string name="phantom_fingers_font">fonts/phantom_fingers.ttf</string>
+</resources>
