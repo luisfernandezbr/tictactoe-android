@@ -1,0 +1,17 @@
+<resources>
+    <!-- Which advantages will we get with it? -->
+    <integer name="game_atlas_width">1024</integer>
+    <integer name="game_atlas_height">1024</integer>
+    <integer name="board_width">0</integer>
+    <integer name="board_height">0</integer>
+    <integer name="board_pos_x">0</integer>
+    <integer name="board_pos_y">0</integer>
+    <integer name="board_texture_pos_x">0</integer>
+    <integer name="board_texture_pos_y">0</integer>
+    <integer name="mark_width">0</integer>
+    <integer name="mark_height">0</integer>
+    <integer name="x_mark_texture_pos_x">0</integer>
+    <integer name="x_mark_texture_pos_y">0</integer>
+    <integer name="o_mark_texture_pos_x">0</integer>
+    <integer name="o_mark_texture_pos_y">0</integer>
+</resources>
