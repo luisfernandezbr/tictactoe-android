@@ -5,6 +5,7 @@ import com.squareup.otto.Subscribe;
 import br.com.mobiplus.tictactoe.GameStateEnum;
 import br.com.mobiplus.tictactoe.ai.model.ComputerAiModel;
 import br.com.mobiplus.tictactoe.ai.model.IComputerAiModel;
+import br.com.mobiplus.tictactoe.and_engine.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
 import br.com.mobiplus.tictactoe.otto.BusProvider;
@@ -23,6 +24,7 @@ public class AndEngineBoardPresenter implements IBoardPresenter {
 
     private IBoardModel mModel;
     private IComputerAiModel mComputerAiModel;
+    private BoardView mBoardView;
 
     /**
      * Creating dependencies instances here for simplicity
@@ -30,6 +32,7 @@ public class AndEngineBoardPresenter implements IBoardPresenter {
     public AndEngineBoardPresenter() {
         this.mModel = new BoardModel();
         this.mComputerAiModel = new ComputerAiModel();
+        this.mBoardView = new BoardView();
     }
 
     @Subscribe
@@ -53,19 +56,19 @@ public class AndEngineBoardPresenter implements IBoardPresenter {
         GameStateEnum currentState = eventOnGameStateChange.getGameState();
 
         if (GameStateEnum.STATE_PLAYER_HUMAN_PLAY.equals(currentState)) {
-            // TODO
-        }
-        else if (GameStateEnum.STATE_PLAYER_CPU_PLAY.equals(currentState)) {
+            mBoardView.updateBoard(board);
+
+        } else if (GameStateEnum.STATE_PLAYER_CPU_PLAY.equals(currentState)) {
             mComputerAiModel.play(board);
-        }
-        else if (GameStateEnum.STATE_PLAYER_HUMAN_WINS.equals(currentState)) {
-            // TODO
-        }
-        else if (GameStateEnum.STATE_PLAYER_CPU_WINS.equals(currentState)) {
-            // TODO
-        }
-        else if (GameStateEnum.STATE_DRAW.equals(currentState)) {
-            // TODO
+
+        } else if (GameStateEnum.STATE_PLAYER_HUMAN_WINS.equals(currentState)) {
+            mBoardView.updateBoard(board, Player.PLAYER_HUMAN);
+
+        } else if (GameStateEnum.STATE_PLAYER_CPU_WINS.equals(currentState)) {
+            mBoardView.updateBoard(board, Player.PLAYER_CPU);
+
+        } else if (GameStateEnum.STATE_DRAW.equals(currentState)) {
+            mBoardView.updateBoard(board, null);
         }
     }
 
