@@ -85,7 +85,10 @@ public class GameElements {
                 int spritePosY = boardPosY + boardBorderSize + (cellSize + gradeBarSize) * column + ((cellSize - markSize) / 2);
 
                 marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture);
+                marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex].setVisible(false);
+
                 marks[Player.PLAYER_CPU.getId()][currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, oMarkTexture);
+                marks[Player.PLAYER_CPU.getId()][currentBoardTileIndex].setVisible(false);
 
                 currentBoardTileIndex ++;
             }
