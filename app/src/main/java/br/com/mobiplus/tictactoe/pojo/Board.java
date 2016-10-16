@@ -9,6 +9,7 @@ import java.util.List;
 public class Board {
 
     private String[][] boardState = new String[3][3];
+    private Player[][] boardStateByPlayer = new Player[3][3];
     private Player currentPlayer = Player.PLAYER_HUMAN;
 
     private BoardLine[] boardLineArray = {
@@ -231,44 +232,57 @@ public class Board {
         return boardState;
     }
 
+    public Player[][] getBoardStateByPlayer() {
+        return boardStateByPlayer;
+    }
+
     public void updateBoard(int position, String value) {
         changeCurrentPlayer();
 
         switch (position) {
             case 0: {
                 boardState[0][0] = value;
+                boardStateByPlayer[0][0] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 1: {
                 boardState[0][1] = value;
+                boardStateByPlayer[0][1] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 2: {
                 boardState[0][2] = value;
+                boardStateByPlayer[0][2] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 3: {
                 boardState[1][0] = value;
+                boardStateByPlayer[1][0] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 4: {
                 boardState[1][1] = value;
+                boardStateByPlayer[1][1] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 5: {
                 boardState[1][2] = value;
+                boardStateByPlayer[1][2] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 6: {
                 boardState[2][0] = value;
+                boardStateByPlayer[2][0] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 7: {
                 boardState[2][1] = value;
+                boardStateByPlayer[2][1] = Player.getPlayerBySymbol(value);
                 break;
             }
             case 8: {
                 boardState[2][2] = value;
+                boardStateByPlayer[2][2] = Player.getPlayerBySymbol(value);
                 break;
             }
         }
