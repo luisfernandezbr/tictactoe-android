@@ -6,4 +6,5 @@ package br.com.mobiplus.tictactoe.and_engine.game;
 public interface IGameContextLoader {
     GameElements getGameElements();
     GameScreen getGameScreen();
+    GameFonts getGameFonts();
 }

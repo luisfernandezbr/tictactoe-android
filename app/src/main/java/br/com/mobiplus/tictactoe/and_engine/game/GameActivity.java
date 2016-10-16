@@ -1,7 +1,6 @@
 package br.com.mobiplus.tictactoe.and_engine.game;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import org.anddev.andengine.engine.Engine;
@@ -9,7 +8,6 @@ import org.anddev.andengine.engine.options.EngineOptions;
 import org.anddev.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.sprite.Sprite;
-import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
@@ -49,10 +47,9 @@ public class GameActivity extends BaseGameActivity {
         mGameFonts = new GameFonts(getContextLoader());
 
         BitmapTextureAtlas phantomFingersFontTexture = mGameFonts.setupFontTexture();
-        Font phantomFingersFont = mGameFonts.setupFont(mGameFonts.getPhantomFingersTypeFace(), phantomFingersFontTexture, 30, Color.parseColor("#000000"));
 
         mEngine.getTextureManager().loadTextures(mGameElements.setupGameAtlas(), phantomFingersFontTexture);
-        mEngine.getFontManager().loadFonts(phantomFingersFont);
+        mEngine.getFontManager().loadFonts(mGameFonts.setupPhantomFingersFont(phantomFingersFontTexture));
     }
 
     @Override
@@ -71,6 +68,7 @@ public class GameActivity extends BaseGameActivity {
             @Override
             public void run() {
                 mGameScreen.addEntity(mGameElements.setupBoard());
+
                 Sprite[] marks = mGameElements.setupMarks(3, 3);
                 mGameScreen.addEntities(marks);
                 mGameScreen.registerTouchArea(marks);
@@ -107,6 +105,11 @@ public class GameActivity extends BaseGameActivity {
                 @Override
                 public GameScreen getGameScreen() {
                     return mGameScreen;
+                }
+
+                @Override
+                public GameFonts getGameFonts() {
+                    return mGameFonts;
                 }
             };
         }

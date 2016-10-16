@@ -51,10 +51,10 @@ public class BoardView implements IBoardView {
     }
 
     private void showResult(@StringRes int stringResId) {
-
+        iGameContextLoader.getGameScreen().addEntity(iGameContextLoader.getGameFonts().createEndRoundText(stringResId));
     }
 
     private void disableBoardTouch() {
-        this.iGameContextLoader.getGameScreen().unregisterTouchArea(this.iGameContextLoader.getGameElements().getMarks());
+//        this.iGameContextLoader.getGameScreen().unregisterTouchArea(this.iGameContextLoader.getGameElements().getMarks());
     }
 }
