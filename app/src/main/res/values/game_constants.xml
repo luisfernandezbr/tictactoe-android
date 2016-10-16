@@ -14,5 +14,5 @@
     <integer name="x_mark_texture_pos_x">469</integer>
     <integer name="x_mark_texture_pos_y">0</integer>
     <integer name="o_mark_texture_pos_x">469</integer>
-    <integer name="o_mark_texture_pos_y">100</integer>
+    <integer name="o_mark_texture_pos_y">83</integer>
 </resources>
