@@ -1,8 +1,10 @@
 package br.com.mobiplus.tictactoe.and_engine.game;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import org.anddev.andengine.entity.sprite.Sprite;
+import org.anddev.andengine.input.touch.TouchEvent;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -11,6 +13,8 @@ import org.anddev.andengine.opengl.texture.region.TextureRegionFactory;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.android.IContextLoader;
+import br.com.mobiplus.tictactoe.otto.BusProvider;
+import br.com.mobiplus.tictactoe.otto.event.EventOnHumanPlay;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
@@ -19,12 +23,14 @@ import br.com.mobiplus.tictactoe.pojo.Player;
 public class GameElements {
 
     private IContextLoader iContextLoader;
+    private GameActivity.IEngineLoader iEngineLoader;
     private BitmapTextureAtlas gameAtlas;
 
     private Sprite[] marks;
 
-    public GameElements(IContextLoader pIContextLoader) {
+    public GameElements(IContextLoader pIContextLoader, GameActivity.IEngineLoader pIEngineLoader) {
         this.iContextLoader = pIContextLoader;
+        this.iEngineLoader = pIEngineLoader;
     }
 
     public BitmapTextureAtlas setupGameAtlas() {
@@ -79,7 +85,17 @@ public class GameElements {
                 int spritePosX = boardPosX + boardBorderSize + (cellSize + gradeBarSize) * line +((cellSize - markSize) / 2);
                 int spritePosY = boardPosY + boardBorderSize + (cellSize + gradeBarSize) * column + ((cellSize - markSize) / 2);
 
-                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture);
+                final int spriteIndex = currentBoardTileIndex;
+
+                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture) {
+                    @Override
+                    public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                        if (pSceneTouchEvent.isActionDown()) {
+                            BusProvider.getInstance().post(new EventOnHumanPlay(spriteIndex));
+                        }
+                        return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+                    }
+                };
                 marks[currentBoardTileIndex].setVisible(false);
 
                 currentBoardTileIndex ++;
@@ -88,20 +104,27 @@ public class GameElements {
         return marks;
     }
 
-    public void updateMarkByIndex(Player pPlayer, int pMarkIndex, boolean pIsVisible) {
-        Resources resources = iContextLoader.loadContext().getResources();
+    public void updateMarkByIndex(final Player pPlayer, final int pMarkIndex, final boolean pIsVisible) {
+        iEngineLoader.getEngine().runOnUpdateThread(new Runnable() {
+            @Override
+            public void run() {
+                Resources resources = iContextLoader.loadContext().getResources();
 
-        int xMarkTexturePosX = resources.getInteger(R.integer.x_mark_texture_pos_x);
-        int xMarkTexturePosY = resources.getInteger(R.integer.x_mark_texture_pos_y);
-        int oMarkTexturePosX = resources.getInteger(R.integer.o_mark_texture_pos_x);
-        int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
+                int xMarkTexturePosX = resources.getInteger(R.integer.x_mark_texture_pos_x);
+                int xMarkTexturePosY = resources.getInteger(R.integer.x_mark_texture_pos_y);
+                int oMarkTexturePosX = resources.getInteger(R.integer.o_mark_texture_pos_x);
+                int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
 
-        if (pPlayer == Player.PLAYER_HUMAN) {
-            marks[pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
-        } else {
-            marks[pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
-        }
+                if (pPlayer == Player.PLAYER_HUMAN) {
+                    Log.i("GAMA", "index: " + pMarkIndex + " - x|y: " + marks[pMarkIndex].getX() + "|" + marks[pMarkIndex].getY() +  " - HUMAN");
+                    marks[pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
+                } else if (pPlayer == Player.PLAYER_CPU) {
+                    Log.i("GAMA", "index: " + pMarkIndex + " - x|y: " + marks[pMarkIndex].getX() + "|" + marks[pMarkIndex].getY() +  " - CPU");
+                    marks[pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
+                }
 
-        marks[pMarkIndex].setVisible(pIsVisible);
+                marks[pMarkIndex].setVisible(pIsVisible);
+            }
+        });
     }
 }
