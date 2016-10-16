@@ -123,4 +123,8 @@ public class GameElements {
             }
         });
     }
+
+    public Sprite[] getMarks() {
+        return marks;
+    }
 }
