@@ -22,6 +22,7 @@ import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
  */
 public class GameActivity extends BaseGameActivity {
 
+    private IGameContextLoader mIGameContextLoader;
     private ContextLoader contextLoader;
     private IBoardPresenter mPresenter;
 
@@ -89,5 +90,17 @@ public class GameActivity extends BaseGameActivity {
             };
         }
         return contextLoader;
+    }
+
+    private IGameContextLoader getGameContextLoader() {
+        if (mIGameContextLoader == null) {
+            mIGameContextLoader = new IGameContextLoader() {
+                @Override
+                public GameElements getGameElements() {
+                    return mGameElements;
+                }
+            };
+        }
+        return mIGameContextLoader;
     }
 }
