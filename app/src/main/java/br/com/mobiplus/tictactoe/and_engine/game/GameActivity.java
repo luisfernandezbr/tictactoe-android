@@ -21,7 +21,6 @@ import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
  * Created by Gama on 15/10/2016.
  */
 public class GameActivity extends BaseGameActivity {
-
     private IGameContextLoader mIGameContextLoader;
     private IContextLoader mIContextLoader;
     private IBoardPresenter mPresenter;
@@ -46,7 +45,7 @@ public class GameActivity extends BaseGameActivity {
     @Override
     public void onLoadResources() {
         mGameScreen.setupSceneBackground(mEngine.getTextureManager());
-        mGameElements = new GameElements(getContextLoader());
+        mGameElements = new GameElements(getContextLoader(), getEngineLoader());
         mGameFonts = new GameFonts(getContextLoader());
 
         BitmapTextureAtlas phantomFingersFontTexture = mGameFonts.setupFontTexture();
@@ -68,9 +67,15 @@ public class GameActivity extends BaseGameActivity {
     }
 
     private void createGame() {
-        mGameScreen.addEntity(mGameElements.setupBoard());
-        mGameScreen.addEntities(mGameElements.setupMarks(3, 3));
-        mGameScreen.registerTouchArea(mGameElements.setupMarks(3, 3));
+        mEngine.runOnUpdateThread(new Runnable() {
+            @Override
+            public void run() {
+                mGameScreen.addEntity(mGameElements.setupBoard());
+                Sprite[] marks = mGameElements.setupMarks(3, 3);
+                mGameScreen.addEntities(marks);
+                mGameScreen.registerTouchArea(marks);
+            }
+        });
     }
 
     @Override
@@ -101,5 +106,18 @@ public class GameActivity extends BaseGameActivity {
             };
         }
         return mIGameContextLoader;
+    }
+
+    private IEngineLoader getEngineLoader() {
+        return new IEngineLoader() {
+            @Override
+            public Engine getEngine() {
+                return mEngine;
+            }
+        };
+    }
+
+    public interface IEngineLoader {
+        Engine getEngine();
     }
 }
