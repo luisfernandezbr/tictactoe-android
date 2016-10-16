@@ -27,9 +27,9 @@ public class BoardView implements IBoardView {
                 int index = (row * 3) + col;
                 Player player = boardState[row][col];
                 if (player != null) {
-                    iGameContextLoader.getGameElements().updateMarkByIndex(player, index, true);
+                    iGameContextLoader.getGameElements().playMarkByIndex(player, index, true);
                 } else {
-                    iGameContextLoader.getGameElements().updateMarkByIndex(player, index, false);
+                    iGameContextLoader.getGameElements().playMarkByIndex(player, index, false);
                 }
             }
         }

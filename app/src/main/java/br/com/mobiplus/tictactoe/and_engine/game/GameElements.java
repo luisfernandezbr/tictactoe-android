@@ -104,7 +104,7 @@ public class GameElements {
         return marks;
     }
 
-    public void updateMarkByIndex(final Player pPlayer, final int pMarkIndex, final boolean pIsVisible) {
+    public void playMarkByIndex(final Player pPlayer, final int pMarkIndex, final boolean pIsVisible) {
         iEngineLoader.getEngine().runOnUpdateThread(new Runnable() {
             @Override
             public void run() {
