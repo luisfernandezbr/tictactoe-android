@@ -1,7 +1,13 @@
 <resources>
     <!-- Which advantages will we get with it? -->
+    <integer name="camera_width">768</integer>
+    <integer name="camera_height">1280</integer>
+
     <integer name="game_atlas_width">1024</integer>
     <integer name="game_atlas_height">512</integer>
+
+    <integer name="end_round_text_pos_y">900</integer>
+
     <integer name="board_size">469</integer>
     <integer name="board_pos_x">146</integer>
     <integer name="board_pos_y">404</integer>
@@ -10,6 +16,7 @@
     <integer name="board_border_size">21</integer>
     <integer name="grade_bar_size">11</integer>
     <integer name="cell_size">135</integer>
+
     <integer name="mark_size">83</integer>
     <integer name="x_mark_texture_pos_x">469</integer>
     <integer name="x_mark_texture_pos_y">0</integer>
