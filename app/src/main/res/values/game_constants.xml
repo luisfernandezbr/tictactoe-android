@@ -1,7 +1,7 @@
 <resources>
     <!-- Which advantages will we get with it? -->
     <integer name="game_atlas_width">1024</integer>
-    <integer name="game_atlas_height">1024</integer>
+    <integer name="game_atlas_height">512</integer>
     <integer name="board_width">0</integer>
     <integer name="board_height">0</integer>
     <integer name="board_pos_x">0</integer>
