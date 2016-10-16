@@ -39,6 +39,7 @@ public class BoardView implements IBoardView {
     public void updateBoard(Board board, Player winner) {
         this.updateBoard(board);
         this.defineWinner(winner);
+        this.disableBoardTouch();
     }
 
     private void defineWinner(Player pPlayer) {
@@ -51,5 +52,9 @@ public class BoardView implements IBoardView {
 
     private void showResult(@StringRes int stringResId) {
 
+    }
+
+    private void disableBoardTouch() {
+        this.iGameContextLoader.getGameScreen().unregisterTouchArea(this.iGameContextLoader.getGameElements().getMarks());
     }
 }
