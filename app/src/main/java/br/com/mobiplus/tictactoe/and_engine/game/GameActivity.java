@@ -103,6 +103,11 @@ public class GameActivity extends BaseGameActivity {
                 public GameElements getGameElements() {
                     return mGameElements;
                 }
+
+                @Override
+                public GameScreen getGameScreen() {
+                    return mGameScreen;
+                }
             };
         }
         return mIGameContextLoader;
