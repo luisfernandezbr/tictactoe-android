@@ -18,6 +18,10 @@
     <integer name="cell_size">135</integer>
 
     <integer name="mark_size">83</integer>
+    <integer name="mark_animation_lines">1</integer>
+    <integer name="mark_animation_columns">6</integer>
+    <integer name="mark_tiled_texture_width">508</integer>
+    <integer name="mark_tiled_texture_height">83</integer>
     <integer name="x_mark_texture_pos_x">469</integer>
     <integer name="x_mark_texture_pos_y">0</integer>
     <integer name="o_mark_texture_pos_x">469</integer>

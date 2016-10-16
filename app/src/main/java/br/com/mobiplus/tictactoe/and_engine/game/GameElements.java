@@ -1,17 +1,16 @@
 package br.com.mobiplus.tictactoe.and_engine.game;
 
 import android.content.res.Resources;
-import android.support.annotation.StringRes;
 
+import org.anddev.andengine.entity.sprite.AnimatedSprite;
 import org.anddev.andengine.entity.sprite.Sprite;
-import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.input.touch.TouchEvent;
-import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.texture.region.TextureRegionFactory;
+import org.anddev.andengine.opengl.texture.region.TiledTextureRegion;
 
 import br.com.mobiplus.tictactoe.R;
 import br.com.mobiplus.tictactoe.android.IContextLoader;
@@ -28,7 +27,7 @@ public class GameElements {
     private GameActivity.IEngineLoader iEngineLoader;
     private BitmapTextureAtlas gameAtlas;
 
-    private Sprite[] marks;
+    private AnimatedSprite[] marks;
 
     public GameElements(IContextLoader pIContextLoader, GameActivity.IEngineLoader pIEngineLoader) {
         this.iContextLoader = pIContextLoader;
@@ -61,13 +60,17 @@ public class GameElements {
         return new Sprite(boardPosX, boardPosY, boardTexture);
     }
 
-    public Sprite[] setupMarks(int pLines, int pColumns) {
+    public AnimatedSprite[] setupMarks(int pLines, int pColumns) {
         Resources resources = iContextLoader.loadContext().getResources();
 
         int boardPosX = resources.getInteger(R.integer.board_pos_x);
         int boardPosY = resources.getInteger(R.integer.board_pos_y);
 
         int markSize = resources.getInteger(R.integer.mark_size);
+        int markAnimationLines = resources.getInteger(R.integer.mark_animation_lines);
+        int markAnimationColumns = resources.getInteger(R.integer.mark_animation_columns);
+        int markTiledTextureWidth = resources.getInteger(R.integer.mark_tiled_texture_width);
+        int markTiledTextureHeight = resources.getInteger(R.integer.mark_tiled_texture_height);
         int xMarkTexturePosX = resources.getInteger(R.integer.x_mark_texture_pos_x);
         int xMarkTexturePosY = resources.getInteger(R.integer.x_mark_texture_pos_y);
 
@@ -75,7 +78,7 @@ public class GameElements {
         int gradeBarSize = resources.getInteger(R.integer.grade_bar_size);
         int cellSize = resources.getInteger(R.integer.cell_size);
 
-        marks = new Sprite[pLines * pColumns];
+        marks = new AnimatedSprite[pLines * pColumns];
 
         int currentBoardTileIndex = 0;
         for (int line = 0; line < pLines; line ++) {
@@ -86,8 +89,8 @@ public class GameElements {
 
                 final int spriteIndex = currentBoardTileIndex;
 
-                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, TextureRegionFactory.extractFromTexture(gameAtlas,
-                        xMarkTexturePosX, xMarkTexturePosY, markSize, markSize, false)) {
+                marks[currentBoardTileIndex] = new AnimatedSprite(spritePosX, spritePosY, new TiledTextureRegion(gameAtlas,
+                        xMarkTexturePosX, xMarkTexturePosY, markTiledTextureWidth, markTiledTextureHeight, markAnimationColumns, markAnimationLines)) {
                     @Override
                     public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                         if (pSceneTouchEvent.isActionDown()) {
@@ -120,13 +123,9 @@ public class GameElements {
                 } else if (pPlayer == Player.PLAYER_CPU) {
                     marks[pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
                 }
-
                 marks[pMarkIndex].setVisible(pIsVisible);
+                marks[pMarkIndex].animate(new long[]{50, 50, 50, 50, 50, 50}, false);
             }
         });
-    }
-
-    public Sprite[] getMarks() {
-        return marks;
     }
 }

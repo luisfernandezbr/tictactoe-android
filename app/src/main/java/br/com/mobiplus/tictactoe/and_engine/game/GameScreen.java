@@ -6,6 +6,8 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.IEntity;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.background.RepeatingSpriteBackground;
+import org.anddev.andengine.entity.shape.IShape;
+import org.anddev.andengine.entity.shape.Shape;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.opengl.texture.TextureManager;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
@@ -74,27 +76,27 @@ public class GameScreen {
         }
     }
 
-    public void registerTouchArea(Sprite ... pSprities) {
-        for (Sprite sprite : pSprities) {
-            registerTouchArea(sprite);
+    public void registerTouchArea(IShape... pShapes) {
+        for (IShape shape : pShapes) {
+            registerTouchArea(shape);
         }
     }
 
-    public void registerTouchArea(Sprite pSprite) {
-        if (pSprite != null) {
-            currentScene.registerTouchArea(pSprite);
+    public void registerTouchArea(IShape pShapes) {
+        if (pShapes != null) {
+            currentScene.registerTouchArea(pShapes);
         }
     }
 
-    public void unregisterTouchArea(Sprite ... pSprities) {
-        for (Sprite sprite : pSprities) {
-            unregisterTouchArea(sprite);
+    public void unregisterTouchArea(IShape... pShapes) {
+        for (IShape shape : pShapes) {
+            unregisterTouchArea(shape);
         }
     }
 
-    public void unregisterTouchArea(Sprite pSprite) {
-        if (pSprite != null) {
-            currentScene.unregisterTouchArea(pSprite);
+    public void unregisterTouchArea(IShape pShapes) {
+        if (pShapes != null) {
+            currentScene.unregisterTouchArea(pShapes);
         }
     }
 }

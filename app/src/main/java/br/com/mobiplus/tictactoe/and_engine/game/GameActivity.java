@@ -7,6 +7,7 @@ import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.options.EngineOptions;
 import org.anddev.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.anddev.andengine.entity.scene.Scene;
+import org.anddev.andengine.entity.sprite.AnimatedSprite;
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
@@ -69,7 +70,7 @@ public class GameActivity extends BaseGameActivity {
             public void run() {
                 mGameScreen.addEntity(mGameElements.setupBoard());
 
-                Sprite[] marks = mGameElements.setupMarks(3, 3);
+                AnimatedSprite[] marks = mGameElements.setupMarks(3, 3);
                 mGameScreen.addEntities(marks);
                 mGameScreen.registerTouchArea(marks);
             }
