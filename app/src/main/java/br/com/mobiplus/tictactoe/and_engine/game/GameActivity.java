@@ -69,9 +69,8 @@ public class GameActivity extends BaseGameActivity {
 
     private void createGame() {
         mGameScreen.addEntity(mGameElements.setupBoard());
-        for (Sprite[] marks : mGameElements.setupMarks(3, 3)) {
-            mGameScreen.addEntities(marks);
-        }
+        mGameScreen.addEntities(mGameElements.setupMarks(3, 3));
+        mGameScreen.registerTouchArea(mGameElements.setupMarks(3, 3));
     }
 
     @Override

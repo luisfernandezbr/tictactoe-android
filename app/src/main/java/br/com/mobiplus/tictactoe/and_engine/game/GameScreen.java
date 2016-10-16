@@ -65,11 +65,27 @@ public class GameScreen {
         }
     }
 
+    public void registerTouchArea(Sprite ... pSprities) {
+        for (Sprite sprite : pSprities) {
+            registerTouchArea(sprite);
+        }
+    }
+
     public void registerTouchArea(Sprite pSprite) {
-        currentScene.registerTouchArea(pSprite);
+        if (pSprite != null) {
+            currentScene.registerTouchArea(pSprite);
+        }
+    }
+
+    public void unregisterTouchArea(Sprite ... pSprities) {
+        for (Sprite sprite : pSprities) {
+            unregisterTouchArea(sprite);
+        }
     }
 
     public void unregisterTouchArea(Sprite pSprite) {
-        currentScene.unregisterTouchArea(pSprite);
+        if (pSprite != null) {
+            currentScene.unregisterTouchArea(pSprite);
+        }
     }
 }

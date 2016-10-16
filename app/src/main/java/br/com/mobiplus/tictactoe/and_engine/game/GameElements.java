@@ -21,7 +21,7 @@ public class GameElements {
     private IContextLoader iContextLoader;
     private BitmapTextureAtlas gameAtlas;
 
-    private Sprite[][] marks;
+    private Sprite[] marks;
 
     public GameElements(IContextLoader pIContextLoader) {
         this.iContextLoader = pIContextLoader;
@@ -53,7 +53,7 @@ public class GameElements {
         return new Sprite(boardPosX, boardPosY, boardTexture);
     }
 
-    public Sprite[][] setupMarks(int pLines, int pColumns) {
+    public Sprite[] setupMarks(int pLines, int pColumns) {
         Resources resources = iContextLoader.loadContext().getResources();
 
         int boardPosX = resources.getInteger(R.integer.board_pos_x);
@@ -70,7 +70,7 @@ public class GameElements {
         TextureRegion xMarkTexture = TextureRegionFactory.extractFromTexture(gameAtlas,
                 xMarkTexturePosX, xMarkTexturePosY, markSize, markSize, false);
 
-        marks = new Sprite[2][pLines * pColumns];
+        marks = new Sprite[pLines * pColumns];
 
         int currentBoardTileIndex = 0;
         for (int line = 0; line < pLines; line ++) {
@@ -79,8 +79,8 @@ public class GameElements {
                 int spritePosX = boardPosX + boardBorderSize + (cellSize + gradeBarSize) * line +((cellSize - markSize) / 2);
                 int spritePosY = boardPosY + boardBorderSize + (cellSize + gradeBarSize) * column + ((cellSize - markSize) / 2);
 
-                marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture);
-                marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex].setVisible(false);
+                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture);
+                marks[currentBoardTileIndex].setVisible(false);
 
                 currentBoardTileIndex ++;
             }
@@ -88,7 +88,6 @@ public class GameElements {
         return marks;
     }
 
-    // TODO It needs to be improved
     public void updateMarkByIndex(Player pPlayer, int pMarkIndex, boolean pIsVisible) {
         Resources resources = iContextLoader.loadContext().getResources();
 
@@ -98,11 +97,11 @@ public class GameElements {
         int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
 
         if (pPlayer == Player.PLAYER_HUMAN) {
-            marks[pPlayer.getId()][pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
+            marks[pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
         } else {
-            marks[pPlayer.getId()][pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
+            marks[pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
         }
 
-        marks[pPlayer.getId()][pMarkIndex].setVisible(pIsVisible);
+        marks[pMarkIndex].setVisible(pIsVisible);
     }
 }
