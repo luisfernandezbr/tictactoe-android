@@ -4,16 +4,21 @@ package br.com.mobiplus.tictactoe.pojo;
  * Created by luis.fernandez on 3/17/16.
  */
 public enum Player {
-    PLAYER_HUMAN("X"),
-    PLAYER_CPU("O");
+    PLAYER_HUMAN("X", 0),
+    PLAYER_CPU("O", 1);
 
     private final String symbol;
+    private final int id;
 
-    Player(String symbol) {
+    Player(String symbol, int id) {
         this.symbol = symbol;
+        this.id = id;
     }
 
     public String getSymbol() {
         return symbol;
+    }
+    public int getId() {
+        return id;
     }
 }
