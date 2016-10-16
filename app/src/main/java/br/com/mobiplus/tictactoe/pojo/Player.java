@@ -21,4 +21,12 @@ public enum Player {
     public int getId() {
         return id;
     }
+
+    public static Player getPlayerBySymbol(String symbol) {
+        if (symbol.equals(PLAYER_CPU.getSymbol())) {
+            return PLAYER_CPU;
+        } else {
+            return PLAYER_HUMAN;
+        }
+    }
 }
