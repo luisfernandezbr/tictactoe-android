@@ -62,8 +62,6 @@ public class GameElements {
         int markSize = resources.getInteger(R.integer.mark_size);
         int xMarkTexturePosX = resources.getInteger(R.integer.x_mark_texture_pos_x);
         int xMarkTexturePosY = resources.getInteger(R.integer.x_mark_texture_pos_y);
-        int oMarkTexturePosX = resources.getInteger(R.integer.o_mark_texture_pos_x);
-        int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
 
         int boardBorderSize = resources.getInteger(R.integer.board_border_size);
         int gradeBarSize = resources.getInteger(R.integer.grade_bar_size);
@@ -71,9 +69,6 @@ public class GameElements {
 
         TextureRegion xMarkTexture = TextureRegionFactory.extractFromTexture(gameAtlas,
                 xMarkTexturePosX, xMarkTexturePosY, markSize, markSize, false);
-
-        TextureRegion oMarkTexture = TextureRegionFactory.extractFromTexture(gameAtlas,
-                oMarkTexturePosX, oMarkTexturePosY, markSize, markSize, false);
 
         marks = new Sprite[2][pLines * pColumns];
 
@@ -87,19 +82,27 @@ public class GameElements {
                 marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture);
                 marks[Player.PLAYER_HUMAN.getId()][currentBoardTileIndex].setVisible(false);
 
-                marks[Player.PLAYER_CPU.getId()][currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, oMarkTexture);
-                marks[Player.PLAYER_CPU.getId()][currentBoardTileIndex].setVisible(false);
-
                 currentBoardTileIndex ++;
             }
         }
-
         return marks;
     }
 
     // TODO It needs to be improved
     public void updateMarkByIndex(Player pPlayer, int pMarkIndex, boolean pIsVisible) {
-        marks[pPlayer.getId()][pMarkIndex].setVisible(pIsVisible);
+        Resources resources = iContextLoader.loadContext().getResources();
 
+        int xMarkTexturePosX = resources.getInteger(R.integer.x_mark_texture_pos_x);
+        int xMarkTexturePosY = resources.getInteger(R.integer.x_mark_texture_pos_y);
+        int oMarkTexturePosX = resources.getInteger(R.integer.o_mark_texture_pos_x);
+        int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
+
+        if (pPlayer == Player.PLAYER_HUMAN) {
+            marks[pPlayer.getId()][pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
+        } else {
+            marks[pPlayer.getId()][pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
+        }
+
+        marks[pPlayer.getId()][pMarkIndex].setVisible(pIsVisible);
     }
 }
