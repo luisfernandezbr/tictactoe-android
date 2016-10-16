@@ -73,9 +73,6 @@ public class GameElements {
         int gradeBarSize = resources.getInteger(R.integer.grade_bar_size);
         int cellSize = resources.getInteger(R.integer.cell_size);
 
-        TextureRegion xMarkTexture = TextureRegionFactory.extractFromTexture(gameAtlas,
-                xMarkTexturePosX, xMarkTexturePosY, markSize, markSize, false);
-
         marks = new Sprite[pLines * pColumns];
 
         int currentBoardTileIndex = 0;
@@ -87,7 +84,8 @@ public class GameElements {
 
                 final int spriteIndex = currentBoardTileIndex;
 
-                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, xMarkTexture) {
+                marks[currentBoardTileIndex] = new Sprite(spritePosX, spritePosY, TextureRegionFactory.extractFromTexture(gameAtlas,
+                        xMarkTexturePosX, xMarkTexturePosY, markSize, markSize, false)) {
                     @Override
                     public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                         if (pSceneTouchEvent.isActionDown()) {
@@ -116,10 +114,8 @@ public class GameElements {
                 int oMarkTexturePosY = resources.getInteger(R.integer.o_mark_texture_pos_y);
 
                 if (pPlayer == Player.PLAYER_HUMAN) {
-                    Log.i("GAMA", "index: " + pMarkIndex + " - x|y: " + marks[pMarkIndex].getX() + "|" + marks[pMarkIndex].getY() +  " - HUMAN");
                     marks[pMarkIndex].getTextureRegion().setTexturePosition(xMarkTexturePosX, xMarkTexturePosY);
                 } else if (pPlayer == Player.PLAYER_CPU) {
-                    Log.i("GAMA", "index: " + pMarkIndex + " - x|y: " + marks[pMarkIndex].getX() + "|" + marks[pMarkIndex].getY() +  " - CPU");
                     marks[pMarkIndex].getTextureRegion().setTexturePosition(oMarkTexturePosX, oMarkTexturePosY);
                 }
 
