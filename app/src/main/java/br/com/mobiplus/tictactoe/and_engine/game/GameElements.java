@@ -1,7 +1,6 @@
 package br.com.mobiplus.tictactoe.and_engine.game;
 
 import android.content.res.Resources;
-import android.util.Log;
 
 import org.anddev.andengine.entity.sprite.Sprite;
 import org.anddev.andengine.opengl.texture.TextureOptions;
@@ -11,7 +10,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.opengl.texture.region.TextureRegionFactory;
 
 import br.com.mobiplus.tictactoe.R;
-import br.com.mobiplus.tictactoe.android.ContextLoader;
+import br.com.mobiplus.tictactoe.android.IContextLoader;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
 /**
@@ -19,26 +18,26 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public class GameElements {
 
-    private ContextLoader contextLoader;
+    private IContextLoader iContextLoader;
     private BitmapTextureAtlas gameAtlas;
 
     private Sprite[][] marks;
 
-    public GameElements(ContextLoader pContextLoader) {
-        this.contextLoader = pContextLoader;
+    public GameElements(IContextLoader pIContextLoader) {
+        this.iContextLoader = pIContextLoader;
     }
 
     public BitmapTextureAtlas setupGameAtlas() {
-        Resources resources = contextLoader.loadContext().getResources();
+        Resources resources = iContextLoader.loadContext().getResources();
 
         gameAtlas = new BitmapTextureAtlas(resources.getInteger(R.integer.game_atlas_width), resources.getInteger(R.integer.game_atlas_height), TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-        BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameAtlas, contextLoader.loadContext(), contextLoader.loadContext().getString(R.string.game_atlas), 0, 0);
+        BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameAtlas, iContextLoader.loadContext(), iContextLoader.loadContext().getString(R.string.game_atlas), 0, 0);
 
         return gameAtlas;
     }
 
     public Sprite setupBoard() {
-        Resources resources = contextLoader.loadContext().getResources();
+        Resources resources = iContextLoader.loadContext().getResources();
 
         int boardSize = resources.getInteger(R.integer.board_size);
 
@@ -55,7 +54,7 @@ public class GameElements {
     }
 
     public Sprite[][] setupMarks(int pLines, int pColumns) {
-        Resources resources = contextLoader.loadContext().getResources();
+        Resources resources = iContextLoader.loadContext().getResources();
 
         int boardPosX = resources.getInteger(R.integer.board_pos_x);
         int boardPosY = resources.getInteger(R.integer.board_pos_y);

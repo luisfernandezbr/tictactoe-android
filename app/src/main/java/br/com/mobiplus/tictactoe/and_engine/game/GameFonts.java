@@ -7,21 +7,21 @@ import org.anddev.andengine.opengl.texture.TextureOptions;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 
 import br.com.mobiplus.tictactoe.R;
-import br.com.mobiplus.tictactoe.android.ContextLoader;
+import br.com.mobiplus.tictactoe.android.IContextLoader;
 
 /**
  * Created by Gama on 15/10/2016.
  */
 public class GameFonts {
 
-    private ContextLoader contextLoader;
+    private IContextLoader iContextLoader;
 
     private Typeface phantomFingers;
 
-    public GameFonts(ContextLoader pContextLoader) {
-        this.contextLoader = pContextLoader;
-        this.phantomFingers = Typeface.createFromAsset(contextLoader.loadContext().getAssets(),
-                contextLoader.loadContext().getString(R.string.phantom_fingers_font));
+    public GameFonts(IContextLoader pIContextLoader) {
+        this.iContextLoader = pIContextLoader;
+        this.phantomFingers = Typeface.createFromAsset(iContextLoader.loadContext().getAssets(),
+                iContextLoader.loadContext().getString(R.string.phantom_fingers_font));
     }
 
     public BitmapTextureAtlas setupFontTexture() {

@@ -9,7 +9,7 @@ import org.anddev.andengine.opengl.texture.TextureManager;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 
 import br.com.mobiplus.tictactoe.R;
-import br.com.mobiplus.tictactoe.android.ContextLoader;
+import br.com.mobiplus.tictactoe.android.IContextLoader;
 
 /**
  * Created by Gama on 15/10/2016.
@@ -18,12 +18,12 @@ public class GameScreen {
     private final int CAMERA_WIDTH  = 768;
     private final int CAMERA_HEIGHT = 1280;
 
-    private ContextLoader contextLoader;
+    private IContextLoader iContextLoader;
     private Scene currentScene;
     private RepeatingSpriteBackground sceneBackground;
 
-    public GameScreen(ContextLoader pContextLoader) {
-        contextLoader = pContextLoader;
+    public GameScreen(IContextLoader pIContextLoader) {
+        iContextLoader = pIContextLoader;
     }
 
     public Camera setupCamera() {
@@ -39,7 +39,7 @@ public class GameScreen {
 
     public void setupSceneBackground(TextureManager pTextureManager) {
         sceneBackground = new RepeatingSpriteBackground(CAMERA_WIDTH, CAMERA_HEIGHT,
-                pTextureManager, new AssetBitmapTextureAtlasSource(contextLoader.loadContext(), contextLoader.loadContext().getString(R.string.main_scene_background)));
+                pTextureManager, new AssetBitmapTextureAtlasSource(iContextLoader.loadContext(), iContextLoader.loadContext().getString(R.string.main_scene_background)));
     }
 
     public void sortEntities() {

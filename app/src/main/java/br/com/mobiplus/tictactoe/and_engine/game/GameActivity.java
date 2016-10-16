@@ -13,7 +13,7 @@ import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
-import br.com.mobiplus.tictactoe.android.ContextLoader;
+import br.com.mobiplus.tictactoe.android.IContextLoader;
 import br.com.mobiplus.tictactoe.mvp.presenter.AndEngineBoardPresenter;
 import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
 
@@ -23,7 +23,7 @@ import br.com.mobiplus.tictactoe.mvp.presenter.IBoardPresenter;
 public class GameActivity extends BaseGameActivity {
 
     private IGameContextLoader mIGameContextLoader;
-    private ContextLoader contextLoader;
+    private IContextLoader mIContextLoader;
     private IBoardPresenter mPresenter;
 
     private GameScreen mGameScreen;
@@ -80,16 +80,16 @@ public class GameActivity extends BaseGameActivity {
         mPresenter.onStop();
     }
 
-    private ContextLoader getContextLoader() {
-        if (contextLoader == null) {
-            contextLoader = new ContextLoader() {
+    private IContextLoader getContextLoader() {
+        if (mIContextLoader == null) {
+            mIContextLoader = new IContextLoader() {
                 @Override
                 public Context loadContext() {
                     return getApplicationContext();
                 }
             };
         }
-        return contextLoader;
+        return mIContextLoader;
     }
 
     private IGameContextLoader getGameContextLoader() {
