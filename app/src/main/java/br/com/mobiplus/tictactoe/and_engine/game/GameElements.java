@@ -95,7 +95,8 @@ public class GameElements {
     }
 
     // TODO It needs to be improved
-    public Sprite getMarkByIndex(Player pPlayer, int markIndex) {
-        return marks[pPlayer.getId()][markIndex];
+    public void updateMarkByIndex(Player pPlayer, int pMarkIndex, boolean pIsVisible) {
+        marks[pPlayer.getId()][pMarkIndex].setVisible(pIsVisible);
+
     }
 }
