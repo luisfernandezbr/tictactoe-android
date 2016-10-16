@@ -5,6 +5,7 @@ import com.squareup.otto.Subscribe;
 import br.com.mobiplus.tictactoe.GameStateEnum;
 import br.com.mobiplus.tictactoe.ai.model.ComputerAiModel;
 import br.com.mobiplus.tictactoe.ai.model.IComputerAiModel;
+import br.com.mobiplus.tictactoe.and_engine.game.IGameContextLoader;
 import br.com.mobiplus.tictactoe.and_engine.mvp.view.BoardView;
 import br.com.mobiplus.tictactoe.mvp.model.BoardModel;
 import br.com.mobiplus.tictactoe.mvp.model.IBoardModel;
@@ -29,10 +30,10 @@ public class AndEngineBoardPresenter implements IBoardPresenter {
     /**
      * Creating dependencies instances here for simplicity
      */
-    public AndEngineBoardPresenter() {
+    public AndEngineBoardPresenter(IGameContextLoader pIGameContextLoader) {
         this.mModel = new BoardModel();
         this.mComputerAiModel = new ComputerAiModel();
-        this.mBoardView = new BoardView();
+        this.mBoardView = new BoardView(pIGameContextLoader);
     }
 
     @Subscribe

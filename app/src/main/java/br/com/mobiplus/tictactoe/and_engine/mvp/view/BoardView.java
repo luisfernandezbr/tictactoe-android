@@ -3,6 +3,7 @@ package br.com.mobiplus.tictactoe.and_engine.mvp.view;
 import android.support.annotation.StringRes;
 
 import br.com.mobiplus.tictactoe.R;
+import br.com.mobiplus.tictactoe.and_engine.game.IGameContextLoader;
 import br.com.mobiplus.tictactoe.pojo.Board;
 import br.com.mobiplus.tictactoe.pojo.Player;
 
@@ -11,7 +12,10 @@ import br.com.mobiplus.tictactoe.pojo.Player;
  */
 public class BoardView implements IBoardView {
 
-    public BoardView() {
+    private IGameContextLoader iGameContextLoader;
+
+    public BoardView(IGameContextLoader pIGameContextLoader) {
+        this.iGameContextLoader = pIGameContextLoader;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class GameActivity extends BaseGameActivity {
     @Override
     protected void onCreate(Bundle pSavedInstanceState) {
         super.onCreate(pSavedInstanceState);
-        mPresenter = new AndEngineBoardPresenter();
+        mPresenter = new AndEngineBoardPresenter(getGameContextLoader());
     }
 
     @Override
