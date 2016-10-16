@@ -20,22 +20,16 @@ public class BoardView implements IBoardView {
 
     @Override
     public void updateBoard(Board board) {
-        String[][] boardState = board.getBoard();
+        Player[][] boardState = board.getBoardStateByPlayer();
 
         for (int row = 0; row < boardState.length; row++) {
             for (int col = 0; col < boardState[row].length; col++) {
-                String mark = boardState[row][col];
-
-                if (mark != null) {
-                    int index = (row * 3) + col;
-
-                    if (mark.equals(Player.PLAYER_HUMAN)) {
-                        // ANIMATE INDEX
-                    } else {
-                        // ANIMATE INDEX
-                    }
+                int index = (row * 3) + col;
+                Player player = boardState[row][col];
+                if (player != null) {
+                    iGameContextLoader.getGameElements().updateMarkByIndex(player, index, true);
                 } else {
-
+                    iGameContextLoader.getGameElements().updateMarkByIndex(player, index, false);
                 }
             }
         }
